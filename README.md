@@ -2,11 +2,18 @@
 
 ## 📌 网站信息
 
+### 🌐 三个网址（都能访问同一个网站）
+
+| 网址名称 | 网址地址 | 说明 |
+|---------|---------|------|
+| **根域名** | https://tuanzilulu.xyz | ⭐ 推荐使用！短、好记、专业 |
+| **www域名** | https://www.tuanzilulu.xyz | 更正式的版本 |
+| **临时地址** | https://tuanzilulu-website.colinjacobsonfbp.workers.dev | 永久可用，但太长不好记 |
+
+### 📁 其他信息
+
 | 项目 | 内容 |
 |------|------|
-| 网站地址 | https://tuanzilulu.xyz |
-| www地址 | https://www.tuanzilulu.xyz |
-| 临时地址 | https://tuanzilulu-website.colinjacobsonfbp.workers.dev |
 | 源文件位置 | `D:\Users\li\桌面\前端网页的宣传\index.html` |
 | GitHub仓库 | https://github.com/stlldsa/tuanzilulu-website |
 
