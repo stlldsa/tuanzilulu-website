@@ -1,623 +1,2281 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuanZiLuLu - 创意工作室</title>
-    <meta name="description" content="TuanZiLuLu 工作室 - 专业的创意设计与技术开发服务">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1B130E">
+  <meta name="description" content="团子噜噜工作室作品集">
+  <title>团子噜噜工作室 · 作品集</title>
+  <style>
+    :root {
+      --bg: #1b130e;
+      --bg-soft: #251910;
+      --surface: #f7efe4;
+      --surface-deep: #eadccc;
+      --ink: #2f1d10;
+      --cream: #f5ebdd;
+      --muted: #c6b6a4;
+      --muted-dark: #846f5c;
+      --line: rgba(245, 235, 221, 0.18);
+      --line-dark: rgba(47, 29, 16, 0.18);
+      --orange: #f28a1d;
+      --green: #168447;
+      --blue: #2e86e9;
+      --purple: #7654b8;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+      color-scheme: dark;
+    }
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    * { box-sizing: border-box; }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    html {
+      min-width: 0;
+      background: var(--bg);
+    }
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    body {
+      margin: 0;
+      min-width: 0;
+      min-height: 100svh;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--cream);
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                        'mono': ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        'primary': {
-                            '50': '#f0f9ff',
-                            '100': '#e0f2fe',
-                            '200': '#bae6fd',
-                            '300': '#7dd3fc',
-                            '400': '#38bdf8',
-                            '500': '#0ea5e9',
-                            '600': '#0284c7',
-                            '700': '#0369a1',
-                            '800': '#075985',
-                            '900': '#0c4a6e',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    button, a { font: inherit; }
 
-    <style>
-        /* 自定义动画 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    img, svg, video, canvas { max-width: 100%; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    button {
+      border: 0;
+      cursor: pointer;
+    }
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+    button:disabled {
+      cursor: not-allowed;
+    }
 
-        @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(14, 165, 233, 0.6);
-            }
-        }
+    a { color: inherit; text-decoration: none; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
+    :focus-visible {
+      outline: 3px solid var(--orange);
+      outline-offset: 4px;
+    }
 
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
+    [hidden] { display: none !important; }
 
-        .animate-fade-in {
-            animation: fadeIn 1s ease-out forwards;
-        }
+    .site-shell {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      height: 100svh;
+      min-height: 560px;
+      padding: max(clamp(14px, 2vw, 26px), env(safe-area-inset-top))
+        max(clamp(16px, 3vw, 48px), env(safe-area-inset-right))
+        max(clamp(12px, 1.5vw, 20px), env(safe-area-inset-bottom))
+        max(clamp(16px, 3vw, 48px), env(safe-area-inset-left));
+      overflow: hidden;
+    }
 
-        .animate-slide-in-left {
-            animation: slideInLeft 0.8s ease-out forwards;
-        }
+    .site-shell::before,
+    .site-shell::after {
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+    }
 
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
+    .site-shell::before {
+      inset: 0;
+      opacity: 0.32;
+      background-image:
+        linear-gradient(rgba(245, 235, 221, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245, 235, 221, 0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, black, transparent 92%);
+    }
 
-        .animate-pulse-glow {
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
+    .site-shell::after {
+      top: 11%;
+      right: -12vw;
+      width: 35vw;
+      height: 1px;
+      background: var(--orange);
+      opacity: 0.38;
+      transform: rotate(-31deg);
+      transform-origin: left center;
+    }
 
-        /* 渐变文字 */
-        .gradient-text {
-            background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 94px;
+    }
 
-        /* 毛玻璃效果 */
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    .brand-plaque {
+      display: grid;
+      place-items: center;
+      width: 104px;
+      height: 82px;
+      padding: 5px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid rgba(247, 239, 228, 0.7);
+      border-radius: 8px 26px 8px 26px;
+      box-shadow: 10px 10px 0 rgba(242, 138, 29, 0.12);
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
 
-        /* 卡片悬停效果 */
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    .brand-plaque:hover { transform: translateY(-2px); box-shadow: 10px 13px 0 rgba(242, 138, 29, 0.16); }
 
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
+    .brand-plaque img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
-        /* 平滑滚动 */
-        html {
-            scroll-behavior: smooth;
-        }
+    .header-tools {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 3vw, 42px);
+    }
 
-        /* 自定义滚动条 */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+    .header-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
 
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
+    .state-nav {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(37, 25, 16, 0.52);
+    }
 
-        ::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 4px;
-        }
+    .state-tab {
+      position: relative;
+      min-width: 66px;
+      min-height: 44px;
+      padding: 0 16px;
+      color: var(--muted);
+      background: transparent;
+      border-radius: 999px;
+      transition: color 180ms ease, background 180ms ease;
+    }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
-        }
-    </style>
+    .state-tab:hover,
+    .state-tab[aria-selected="true"] {
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    .app-main {
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .panel { height: 100%; min-height: 0; }
+
+    .works-layout {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.25fr) minmax(0, 1fr) minmax(250px, 0.34fr);
+      gap: clamp(18px, 3vw, 54px);
+      height: 100%;
+      min-height: 0;
+      padding: clamp(16px, 3vh, 42px) 0 clamp(8px, 2vh, 22px);
+    }
+
+    .eyebrow,
+    .section-label {
+      margin: 0;
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.19em;
+      text-transform: uppercase;
+    }
+
+    .work-index {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      padding: 10px 0 0;
+    }
+
+    .index-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: clamp(18px, 4vh, 44px);
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .index-heading h1 {
+      margin: 8px 0 0;
+      color: var(--cream);
+      font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+      font-size: clamp(19px, 2vw, 27px);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+    }
+
+    .index-count {
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .work-list {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .work-tab {
+      display: grid;
+      grid-template-columns: 30px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 58px;
+      padding: 9px 10px;
+      color: var(--muted);
+      text-align: left;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 6px 18px 6px 18px;
+      transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .work-tab:hover { color: var(--cream); transform: translateX(3px); }
+
+    .work-tab[aria-selected="true"] {
+      color: var(--ink);
+      background: var(--surface);
+      border-color: rgba(247, 239, 228, 0.58);
+      box-shadow: 8px 8px 0 rgba(242, 138, 29, 0.12);
+    }
+
+    .work-tab-number {
+      align-self: start;
+      padding-top: 2px;
+      font-family: Georgia, serif;
+      font-size: 12px;
+    }
+
+    .work-tab-title {
+      min-width: 0;
+      overflow: hidden;
+      font-size: 13px;
+      line-height: 1.45;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .work-tab-type {
+      font-size: 10px;
+      opacity: 0.72;
+      white-space: nowrap;
+    }
+
+    .index-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 18px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .index-note::before {
+      width: 22px;
+      height: 1px;
+      flex: 0 0 auto;
+      background: var(--orange);
+      content: "";
+    }
+
+    .works-center {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .stage-intro {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .stage-intro-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    .stage-rule { width: min(35%, 140px); height: 1px; background: var(--line); }
+
+    .stage-rail {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(38px, 0.11fr) minmax(0, 1fr) minmax(38px, 0.11fr);
+      flex: 1;
+      min-height: 0;
+      gap: clamp(8px, 1.6vw, 22px);
+    }
+
+    .stage-preview {
+      align-self: center;
+      min-width: 0;
+      padding: 0;
+      color: var(--cream);
+      background: transparent;
+      text-align: left;
+      opacity: 0.45;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .stage-preview--prev { transform: translateX(5px); }
+    .stage-preview--next { transform: translateX(-5px); text-align: right; }
+    .stage-preview:not(:disabled):hover { opacity: 0.82; }
+    .stage-preview:disabled { opacity: 0.14; }
+
+    .preview-card {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .preview-media {
+      position: relative;
+      display: block;
+      aspect-ratio: 0.68;
+      overflow: hidden;
+      background: var(--surface-deep);
+      border: 1px solid rgba(247, 239, 228, 0.25);
+      border-radius: 8px;
+    }
+
+    .preview-media::after {
+      position: absolute;
+      inset: 9px;
+      border: 1px solid color-mix(in srgb, var(--accent) 58%, transparent);
+      content: "";
+    }
+
+    .preview-media img,
+    .preview-media video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.72;
+    }
+
+    .preview-number {
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      color: var(--ink);
+      font-family: Georgia, serif;
+      font-size: 25px;
+      opacity: 0.7;
+    }
+
+    .preview-title {
+      overflow: hidden;
+      color: var(--muted);
+      font-size: 11px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .stage-viewport {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      touch-action: pan-y;
+      user-select: none;
+    }
+
+    .stage-viewport::before,
+    .stage-viewport::after {
+      position: absolute;
+      z-index: -1;
+      width: 54%;
+      height: 1px;
+      background: var(--accent, var(--orange));
+      content: "";
+      opacity: 0.4;
+    }
+
+    .stage-viewport::before { top: 12%; left: -7%; transform: rotate(8deg); }
+    .stage-viewport::after { right: -7%; bottom: 12%; transform: rotate(8deg); }
+
+    .stage-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+      transition: transform 220ms ease, opacity 220ms ease;
+    }
+
+    .stage-viewport.is-dragging .stage-content { transition: none; transform: translate3d(var(--drag-x, 0px), 0, 0); }
+
+    .stage-viewport.is-exiting.direction-next .stage-content { transform: translate3d(-9%, 0, 0); opacity: 0; }
+    .stage-viewport.is-exiting.direction-prev .stage-content { transform: translate3d(9%, 0, 0); opacity: 0; }
+
+    .stage-viewport.is-entering.direction-next .stage-content { animation: stage-enter-next 430ms cubic-bezier(.2,.78,.2,1) both; }
+    .stage-viewport.is-entering.direction-prev .stage-content { animation: stage-enter-prev 430ms cubic-bezier(.2,.78,.2,1) both; }
+
+    @keyframes stage-enter-next {
+      from { transform: translate3d(9%, 0, 0); opacity: 0; }
+      to { transform: translate3d(0, 0, 0); opacity: 1; }
+    }
+
+    @keyframes stage-enter-prev {
+      from { transform: translate3d(-9%, 0, 0); opacity: 0; }
+      to { transform: translate3d(0, 0, 0); opacity: 1; }
+    }
+
+    .stage-overline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: clamp(8px, 1.5vh, 18px);
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-size: 12px;
+    }
+
+    .stage-overline strong { color: var(--orange); font-weight: 400; }
+
+    .media-frame {
+      position: relative;
+      display: grid;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid rgba(247, 239, 228, 0.7);
+      border-radius: 26px 26px 26px 7px;
+      box-shadow: var(--shadow), 14px 14px 0 color-mix(in srgb, var(--accent, var(--orange)) 23%, transparent);
+    }
+
+    .media-frame::before {
+      position: absolute;
+      z-index: 1;
+      top: 17px;
+      left: 18px;
+      width: 42px;
+      height: 4px;
+      background: var(--accent, var(--orange));
+      border-radius: 99px;
+      content: "";
+    }
+
+    .media-frame img,
+    .media-frame video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-frame video { background: #1d150f; }
+
+    .media-placeholder {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 280px;
+      overflow: hidden;
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .media-placeholder::before {
+      position: absolute;
+      inset: 8%;
+      border: 1px solid color-mix(in srgb, var(--accent) 43%, var(--ink));
+      border-radius: 18px 18px 18px 4px;
+      content: "";
+      opacity: 0.45;
+    }
+
+    .media-placeholder::after {
+      position: absolute;
+      top: 17%;
+      right: 12%;
+      width: 20%;
+      height: 1px;
+      background: var(--accent);
+      content: "";
+      transform: rotate(-18deg);
+      transform-origin: right center;
+    }
+
+    .placeholder-copy {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+      color: var(--ink);
+    }
+
+    .placeholder-copy span {
+      color: var(--muted-dark);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+    }
+
+    .placeholder-copy strong {
+      color: var(--accent);
+      font-family: Georgia, serif;
+      font-size: clamp(74px, 12vw, 176px);
+      font-weight: 400;
+      line-height: 0.85;
+    }
+
+    .placeholder-copy small { color: var(--muted-dark); font-size: 11px; }
+
+    .stage-caption {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 20px;
+      padding: clamp(12px, 2vh, 22px) 2px 0;
+    }
+
+    .stage-caption h2 {
+      margin: 0;
+      color: var(--cream);
+      font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+      font-size: clamp(21px, 2.8vw, 41px);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    .stage-caption p {
+      max-width: 210px;
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.75;
+      text-align: right;
+    }
+
+    .stage-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding-top: clamp(12px, 2vh, 24px);
+    }
+
+    .compare-frame {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      overflow: hidden;
+      background: var(--surface-deep);
+    }
+
+    .compare-layer {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .compare-layer--before { background: #dfd0bd; }
+    .compare-layer--after { background: var(--surface); clip-path: inset(0 0 0 var(--split, 50%)); }
+
+    .compare-layer img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .compare-placeholder {
+      position: absolute;
+      top: 50%;
+      width: 50%;
+      display: grid;
+      gap: 7px;
+      justify-items: center;
+      color: var(--ink);
+      text-align: center;
+      transform: translateY(-50%);
+    }
+
+    .compare-placeholder--before { left: 0; }
+    .compare-placeholder--after { left: 50%; }
+
+    .compare-placeholder strong {
+      color: var(--accent, var(--orange));
+      font-family: Georgia, serif;
+      font-size: clamp(42px, 7vw, 92px);
+      font-weight: 400;
+      line-height: 0.9;
+    }
+
+    .compare-placeholder span { color: var(--muted-dark); font-size: 11px; letter-spacing: 0.12em; }
+
+    .compare-label {
+      position: absolute;
+      z-index: 4;
+      top: 18px;
+      min-width: 62px;
+      padding: 7px 10px;
+      color: var(--ink);
+      background: rgba(247, 239, 228, 0.82);
+      border: 1px solid rgba(47, 29, 16, 0.2);
+      border-radius: 4px 11px 4px 11px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    .compare-label--before { left: 18px; }
+    .compare-label--after { right: 18px; }
+
+    .compare-divider {
+      position: absolute;
+      z-index: 3;
+      inset-block: 0;
+      left: var(--split, 50%);
+      width: 1px;
+      background: var(--orange);
+      pointer-events: none;
+    }
+
+    .compare-range {
+      position: absolute;
+      z-index: 5;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      appearance: none;
+      cursor: ew-resize;
+      background: transparent;
+      touch-action: none;
+    }
+
+    .compare-range:focus-visible { outline: 3px solid var(--orange); outline-offset: -5px; }
+
+    .compare-range::-webkit-slider-runnable-track,
+    .compare-range::-moz-range-track { height: 100%; background: transparent; }
+
+    .compare-range::-webkit-slider-thumb {
+      width: 44px;
+      height: 44px;
+      appearance: none;
+      background: var(--orange);
+      border: 6px solid var(--surface);
+      border-radius: 5px 13px 5px 13px;
+      box-shadow: 0 0 0 1px rgba(47, 29, 16, 0.25);
+    }
+
+    .compare-range::-moz-range-thumb {
+      width: 44px;
+      height: 44px;
+      background: var(--orange);
+      border: 6px solid var(--surface);
+      border-radius: 5px 13px 5px 13px;
+      box-shadow: 0 0 0 1px rgba(47, 29, 16, 0.25);
+    }
+
+    .arrow-button,
+    .footer-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      min-height: 44px;
+      color: var(--cream);
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 5px 14px 5px 14px;
+      transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .arrow-button { font-size: 22px; }
+
+    .arrow-button:hover:not(:disabled),
+    .footer-button:hover:not(:disabled) {
+      color: var(--ink);
+      background: var(--surface);
+      border-color: var(--surface);
+      transform: translateY(-2px);
+    }
+
+    .arrow-button:disabled { color: var(--muted); opacity: 0.32; }
+
+    .info-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+      min-height: 0;
+      padding: 10px 0 0 clamp(0px, 1vw, 16px);
+      border-left: 1px solid var(--line);
+    }
+
+    .info-notes {
+      display: grid;
+      gap: 10px;
+      max-width: 300px;
+      margin-top: 24px;
+    }
+
+    .info-notes p {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 10px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .info-notes p + p { padding-top: 10px; border-top: 1px solid var(--line); }
+    .info-notes p span:first-child { color: var(--orange); font-size: 10px; letter-spacing: 0.12em; }
+
+    .info-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .info-action {
+      min-height: 44px;
+      padding: 0 12px;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 4px 12px 4px 12px;
+      font-size: 11px;
+      transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .info-action:hover,
+    .info-action:focus-visible { color: var(--ink); background: var(--surface); border-color: var(--surface); }
+
+    .info-action--compare { color: var(--ink); background: var(--surface); border-color: var(--surface); }
+
+    .info-action[aria-pressed="true"] { color: var(--ink); background: var(--orange); border-color: var(--orange); }
+
+    .workspace-dialog {
+      width: min(720px, calc(100vw - 32px));
+      max-height: min(720px, calc(100svh - 32px));
+      padding: 0;
+      color: var(--ink);
+      background: transparent;
+      border: 0;
+    }
+
+    .workspace-dialog::backdrop { background: rgba(16, 10, 6, 0.78); }
+
+    .dialog-surface {
+      max-height: min(720px, calc(100svh - 32px));
+      overflow: hidden;
+      padding: clamp(22px, 4vw, 42px);
+      background: var(--surface);
+      border: 1px solid rgba(247, 239, 228, 0.72);
+      border-radius: 20px 20px 20px 6px;
+      box-shadow: var(--shadow), 12px 12px 0 rgba(242, 138, 29, 0.16);
+    }
+
+    .dialog-header {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .dialog-header h2 {
+      margin: 9px 0 0;
+      color: var(--ink);
+      font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+      font-size: clamp(24px, 4vw, 42px);
+      font-weight: 500;
+    }
+
+    .dialog-close {
+      display: grid;
+      place-items: center;
+      min-width: 44px;
+      min-height: 44px;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--line-dark);
+      border-radius: 4px 12px 4px 12px;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .dialog-close:hover { color: var(--surface); background: var(--ink); }
+
+    .dialog-content {
+      display: grid;
+      gap: 0;
+      max-height: min(480px, calc(100svh - 190px));
+      overflow: auto;
+      padding-top: 8px;
+    }
+
+    .explanation-row {
+      display: grid;
+      grid-template-columns: 100px minmax(0, 1fr);
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .explanation-row strong { color: var(--orange); font-size: 12px; font-weight: 600; }
+    .explanation-row p { margin: 0; color: var(--muted-dark); font-size: 14px; line-height: 1.8; }
+
+    .dialog-empty {
+      display: grid;
+      gap: 9px;
+      padding: 42px 0 24px;
+      color: var(--muted-dark);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .dialog-empty strong { color: var(--ink); font-family: "Noto Serif SC", "Songti SC", serif; font-size: 25px; font-weight: 500; }
+
+    .source-layout {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      min-height: min(410px, calc(100svh - 240px));
+      margin-top: 24px;
+      border: 1px solid var(--line-dark);
+    }
+
+    .source-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px;
+      border-right: 1px solid var(--line-dark);
+      background: rgba(234, 220, 204, 0.55);
+    }
+
+    .source-tab {
+      min-height: 42px;
+      padding: 0 10px;
+      color: var(--muted-dark);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 4px 11px 4px 11px;
+      text-align: left;
+      font-size: 11px;
+    }
+
+    .source-tab[aria-selected="true"],
+    .source-tab:hover { color: var(--ink); background: var(--surface); border-color: var(--line-dark); }
+
+    .source-code {
+      min-width: 0;
+      overflow: auto;
+      background: #211811;
+      color: var(--cream);
+    }
+
+    .source-code pre { min-width: max-content; min-height: 100%; margin: 0; padding: 18px; font: 12px/1.7 "Cascadia Code", Consolas, monospace; white-space: pre; }
+    .source-code code { color: inherit; }
+    .dialog-status { min-height: 18px; margin: 13px 0 0; color: var(--muted-dark); font-size: 11px; }
+
+    .qr-dialog-content { display: grid; justify-items: center; gap: 18px; margin-top: 24px; }
+
+    .qr-preview {
+      display: grid;
+      place-items: center;
+      width: min(300px, 66vw);
+      aspect-ratio: 1;
+      padding: 14px;
+      background: var(--surface-deep);
+      border: 1px solid var(--line-dark);
+      border-radius: 8px 24px 8px 24px;
+    }
+
+    .qr-preview img { display: block; width: 100%; height: 100%; object-fit: contain; background: #fff; }
+    .qr-empty { color: var(--muted-dark); font-size: 12px; text-align: center; }
+
+    .qr-dialog-actions { display: flex; justify-content: center; }
+
+    .dialog-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      color: var(--ink);
+      background: var(--orange);
+      border: 1px solid var(--orange);
+      border-radius: 4px 12px 4px 12px;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .dialog-action:hover { background: #ff9c2e; }
+    .dialog-action:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .info-top { max-width: 310px; }
+
+    .info-index {
+      margin: clamp(18px, 4vh, 46px) 0 18px;
+      color: var(--orange);
+      font-family: Georgia, serif;
+      font-size: clamp(44px, 5vw, 76px);
+      font-weight: 400;
+      line-height: 0.9;
+    }
+
+    .info-panel h2 {
+      margin: 0 0 13px;
+      color: var(--cream);
+      font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+      font-size: clamp(22px, 2.4vw, 35px);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      line-height: 1.25;
+    }
+
+    .info-type { margin: 0 0 20px; color: var(--muted); font-size: 12px; }
+
+    .info-note {
+      max-width: 250px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 48px;
+      margin-top: 28px;
+      padding: 0 16px;
+      color: var(--ink);
+      background: var(--surface);
+      border-radius: 5px 15px 5px 15px;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .project-link:hover { background: #fff8ef; transform: translateX(3px); }
+
+    .project-link::after { content: "↗"; font-size: 17px; }
+
+    .info-bottom {
+      display: grid;
+      gap: 13px;
+      padding-top: 18px;
+    }
+
+    .info-progress {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-size: 12px;
+    }
+
+    .progress-line {
+      position: relative;
+      width: min(180px, 100%);
+      height: 1px;
+      background: var(--line);
+    }
+
+    .progress-line span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1px;
+      width: 25%;
+      background: var(--orange);
+      transition: width 260ms ease;
+    }
+
+    .info-help { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+
+    .state-page {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.32fr);
+      gap: clamp(22px, 5vw, 90px);
+      align-items: center;
+      height: 100%;
+      padding: clamp(22px, 6vh, 90px) clamp(4px, 5vw, 80px);
+    }
+
+    .state-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: min(56vh, 520px);
+      padding: clamp(28px, 6vw, 90px);
+      color: var(--ink);
+      background: var(--surface);
+      border-radius: 30px 30px 30px 8px;
+      box-shadow: var(--shadow), 16px 16px 0 rgba(242, 138, 29, 0.16);
+    }
+
+    .state-card::before {
+      position: absolute;
+      top: 24px;
+      left: 28px;
+      width: 52px;
+      height: 4px;
+      border-radius: 99px;
+      background: var(--orange);
+      content: "";
+    }
+
+    .state-card h1 {
+      max-width: 680px;
+      margin: 20px 0 16px;
+      font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+      font-size: clamp(32px, 5.2vw, 76px);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      line-height: 1.12;
+    }
+
+    .state-card p { margin: 0; }
+
+    .state-subtitle { color: var(--muted-dark); font-size: 14px; line-height: 1.9; }
+
+    .empty-mark {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 56px;
+      color: var(--muted-dark);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    .empty-mark::before { width: 44px; height: 1px; background: var(--orange); content: ""; }
+
+    .state-aside {
+      display: grid;
+      align-content: center;
+      gap: 20px;
+      min-height: 260px;
+      padding: 26px 0 26px 26px;
+      border-left: 1px solid var(--line);
+    }
+
+    .state-aside-number {
+      color: var(--orange);
+      font-family: Georgia, serif;
+      font-size: 76px;
+      line-height: 0.8;
+    }
+
+    .state-aside p { max-width: 170px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+
+    .contact-card { gap: 30px; }
+
+    .contact-list { display: grid; gap: 0; margin-top: 18px; }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 60px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+      min-height: 66px;
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .contact-label { color: var(--muted-dark); font-size: 12px; }
+
+    .contact-value {
+      min-width: 0;
+      overflow: hidden;
+      color: var(--ink);
+      font-size: 14px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .contact-action {
+      min-height: 38px;
+      padding: 0 10px;
+      color: var(--muted-dark);
+      background: transparent;
+      border: 1px solid var(--line-dark);
+      border-radius: 4px 10px 4px 10px;
+      font-size: 11px;
+      transition: color 180ms ease, background 180ms ease;
+    }
+
+    .contact-action:hover { color: var(--ink); background: var(--surface-deep); }
+
+    .contact-qr-download { white-space: nowrap; }
+
+    .contact-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .contact-qr-trigger {
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      padding: 2px;
+      color: var(--muted-dark);
+      background: transparent;
+      border: 1px solid var(--line-dark);
+      border-radius: 5px 13px 5px 13px;
+      transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+    }
+
+    .contact-qr-trigger:hover { color: var(--ink); background: var(--surface-deep); transform: translateY(-2px); }
+
+    .contact-qr-thumb {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      color: var(--muted-dark);
+      background: rgba(234, 220, 204, 0.52);
+      border: 1px solid rgba(47, 29, 16, 0.24);
+      border-radius: 3px 9px 3px 9px;
+      font-size: 8px;
+      line-height: 1.25;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-qr-thumb strong { color: var(--orange); font-size: 8px; font-weight: 600; }
+    .contact-qr-thumb img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; background: #fff; }
+
+    .contact-aside {
+      display: grid;
+      place-items: center;
+      min-height: 260px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 28px 28px 28px 8px;
+    }
+
+    .contact-aside img { display: block; width: min(100%, 240px); height: auto; border-radius: 18px 18px 18px 4px; }
+
+    .utility-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 42px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .utility-left { display: flex; align-items: center; gap: 13px; }
+    .utility-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
+    .utility-status { color: var(--cream); }
+
+    .utility-controls { display: flex; gap: 8px; }
+
+    .footer-button {
+      min-width: auto;
+      min-height: 34px;
+      padding: 0 12px;
+      color: var(--muted);
+      border-color: transparent;
+      border-radius: 4px 10px 4px 10px;
+      font-size: 11px;
+    }
+
+    .live-region {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1080px) {
+      .header-note { display: none; }
+      .works-layout { grid-template-columns: minmax(150px, 0.22fr) minmax(0, 1fr) minmax(200px, 0.3fr); gap: 18px; }
+      .info-panel { padding-left: 14px; }
+      .stage-preview { display: none; }
+      .stage-rail { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 720px) {
+      body { overflow-x: hidden; overflow-y: auto; }
+
+      .site-shell {
+        height: auto;
+        min-height: 100svh;
+        overflow-x: clip;
+        overflow-y: visible;
+        padding: max(12px, env(safe-area-inset-top))
+          max(14px, env(safe-area-inset-right))
+          max(10px, env(safe-area-inset-bottom))
+          max(14px, env(safe-area-inset-left));
+      }
+
+      .app-main, .panel { height: auto; overflow: visible; }
+
+      .site-header { min-height: 68px; }
+      .brand-plaque { width: 84px; height: 62px; border-radius: 6px 19px 6px 19px; }
+      .state-nav { gap: 2px; }
+      .state-tab { min-width: 52px; min-height: 40px; padding: 0 11px; font-size: 12px; }
+
+      .works-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        height: auto;
+        min-height: calc(100svh - 160px);
+        gap: 10px;
+        padding: 12px 0 4px;
+      }
+
+      .work-index { display: block; padding: 0; }
+      .index-heading { margin-bottom: 8px; padding-bottom: 8px; }
+      .index-heading h1 { margin-top: 4px; font-size: 18px; }
+      .index-count { font-size: 14px; }
+      .work-list { display: flex; flex-direction: row; gap: 6px; overflow-x: auto; padding: 0 3px 4px; scrollbar-width: none; }
+      .work-list::-webkit-scrollbar { display: none; }
+      .work-tab { flex: 0 0 138px; grid-template-columns: 24px minmax(0, 1fr); min-height: 46px; padding: 6px 8px; border-radius: 5px 13px 5px 13px; }
+      .work-tab-type { display: none; }
+      .work-tab-title { font-size: 11px; }
+      .index-note { display: none; }
+
+      .works-center { min-height: 0; }
+      .stage-intro { margin-bottom: 7px; }
+      .stage-intro-copy { font-size: 10px; }
+      .stage-rail { min-height: 0; }
+      .stage-viewport { min-height: 0; }
+      .media-frame { border-radius: 18px 18px 18px 5px; box-shadow: 10px 10px 0 color-mix(in srgb, var(--accent, var(--orange)) 21%, transparent); }
+      .media-placeholder { min-height: 0; }
+      .placeholder-copy strong { font-size: clamp(70px, 25vw, 130px); }
+      .stage-caption { padding-top: 10px; }
+      .stage-caption h2 { font-size: clamp(21px, 6vw, 30px); }
+      .stage-caption p { max-width: 150px; font-size: 11px; line-height: 1.5; }
+      .stage-controls { padding-top: 8px; }
+      .arrow-button { min-width: 44px; min-height: 40px; }
+
+      .info-panel { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 12px; min-height: 66px; padding: 8px 0 0; border-top: 1px solid var(--line); border-left: 0; }
+      .info-index { display: none; }
+      .info-panel h2 { margin-bottom: 4px; font-size: 17px; }
+      .info-type { margin: 0; font-size: 10px; }
+      .info-notes { display: none; }
+      .info-help { display: none; }
+      .info-actions { grid-column: 1 / -1; margin-top: 4px; }
+      .info-action { flex: 1 1 auto; min-width: 92px; padding: 0 8px; }
+      .project-link { display: none; }
+      .info-bottom { padding: 0; justify-items: end; }
+      .progress-line { width: 80px; }
+
+      .state-page { display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 24px; height: auto; min-height: calc(100svh - 160px); padding: 14px 0; }
+      .state-card { min-height: 0; padding: 42px 26px 30px; border-radius: 22px 22px 22px 6px; }
+      .state-card h1 { font-size: clamp(31px, 10vw, 52px); }
+      .state-aside { min-height: 0; padding: 16px 0 0; border-top: 1px solid var(--line); border-left: 0; }
+      .state-aside-number { font-size: 38px; }
+      .state-aside p { max-width: none; }
+      .contact-card { gap: 16px; }
+      .contact-card h1 { margin-bottom: 0; }
+      .contact-list { margin-top: 0; }
+      .contact-row { grid-template-columns: 44px minmax(0, 1fr) auto; min-height: 55px; gap: 8px; }
+      .contact-value { font-size: 12px; }
+      .contact-actions { gap: 5px; }
+      .contact-qr-trigger { width: 50px; height: 50px; }
+      .contact-qr-thumb { width: 42px; height: 42px; }
+      .contact-aside { display: none; }
+
+      .utility-bar { min-height: 34px; padding-top: 6px; }
+      .utility-controls { display: none; }
+
+      .workspace-dialog { width: calc(100vw - 20px); max-height: calc(100svh - 20px); }
+      .dialog-surface { max-height: calc(100svh - 20px); padding: 20px 16px; border-radius: 16px 16px 16px 5px; }
+      .dialog-content { max-height: calc(100svh - 165px); }
+      .explanation-row { grid-template-columns: 70px minmax(0, 1fr); gap: 10px; padding: 16px 0; }
+      .source-layout { grid-template-columns: 105px minmax(0, 1fr); min-height: calc(100svh - 200px); }
+      .source-tabs { padding: 6px; }
+      .source-tab { padding: 0 7px; font-size: 10px; }
+    }
+
+    @media (max-width: 340px) {
+      .site-header { gap: 8px; }
+      .brand-plaque { width: 72px; height: 54px; }
+      .header-tools { gap: 6px; }
+      .state-nav { gap: 0; padding: 3px; }
+      .state-tab { min-width: 44px; padding: 0 8px; font-size: 11px; }
+
+      .contact-row {
+        grid-template-columns: 42px minmax(0, 1fr);
+        align-items: start;
+        padding: 8px 0;
+      }
+
+      .contact-value { padding-top: 10px; }
+      .contact-actions { grid-column: 1 / -1; justify-content: flex-end; }
+    }
+
+    @media (max-height: 680px) and (min-width: 721px) {
+      body { overflow-x: hidden; overflow-y: auto; }
+      .site-shell { height: auto; min-height: 100svh; overflow-x: clip; overflow-y: visible; }
+      .app-main, .panel, .works-layout, .state-page { height: auto; overflow: visible; }
+      .works-layout, .state-page { min-height: calc(100svh - 160px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
-<body class="bg-slate-900 text-white font-sans">
+<body>
+  <div class="site-shell" data-panel="works">
+    <header class="site-header">
+      <a class="brand-plaque" href="#works" aria-label="回到作品">
+        <img src="./assets/brand/tuanzilulu-logo.png" width="104" height="82" alt="团子噜噜工作室" decoding="async" fetchpriority="high">
+      </a>
 
-    <!-- 导航栏 -->
-    <nav class="fixed top-0 left-0 right-0 z-50 glass">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <a href="#" class="text-2xl font-bold gradient-text">TuanZiLuLu</a>
+      <div class="header-tools">
+        <p class="header-note">TUAN ZI LU LU · STUDIO</p>
+        <nav class="state-nav" aria-label="主导航" role="tablist">
+          <button class="state-tab" id="works-tab" type="button" role="tab" data-panel="works" aria-controls="works-panel" aria-selected="true">作品</button>
+          <button class="state-tab" id="pricing-tab" type="button" role="tab" data-panel="pricing" aria-controls="pricing-panel" aria-selected="false">定价</button>
+          <button class="state-tab" id="contact-tab" type="button" role="tab" data-panel="contact" aria-controls="contact-panel" aria-selected="false">联系</button>
+        </nav>
+      </div>
+    </header>
 
-                <!-- 导航链接 -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-300 hover:text-white transition-colors">首页</a>
-                    <a href="#about" class="text-gray-300 hover:text-white transition-colors">关于我们</a>
-                    <a href="#services" class="text-gray-300 hover:text-white transition-colors">服务</a>
-                    <a href="#portfolio" class="text-gray-300 hover:text-white transition-colors">作品</a>
-                    <a href="#contact" class="text-gray-300 hover:text-white transition-colors">联系</a>
+    <main class="app-main" id="app-main">
+      <section class="panel" id="works-panel" role="tabpanel" aria-labelledby="works-tab" aria-label="作品展台">
+        <div class="works-layout">
+          <aside class="work-index" aria-label="作品索引">
+            <div class="index-heading">
+              <div>
+                <p class="eyebrow">Selected works</p>
+                <h1>作品</h1>
+              </div>
+              <span class="index-count" id="index-count">01 / 04</span>
+            </div>
+            <div class="work-list" id="work-list" role="tablist" aria-label="作品列表" aria-orientation="vertical"></div>
+            <p class="index-note">左右切换，或直接点选作品。</p>
+          </aside>
+
+          <section class="works-center" id="work-stage" role="tabpanel" aria-label="当前作品">
+            <div class="stage-intro">
+              <p class="stage-intro-copy">把作品放在中间。</p>
+              <span class="stage-rule" aria-hidden="true"></span>
+            </div>
+
+            <div class="stage-rail">
+              <button class="stage-preview stage-preview--prev" id="prev-preview" type="button" aria-label="查看上一个作品">
+                <span class="preview-card"></span>
+              </button>
+
+              <div class="stage-viewport direction-next" id="stage-viewport" aria-live="polite">
+                <div class="stage-content" id="stage-content">
+                  <div class="stage-overline"><span>WORK <strong id="stage-number">01</strong></span><span id="stage-category">作品</span></div>
+                  <div class="media-frame" id="active-media"></div>
+                  <div class="stage-caption">
+                    <h2 id="stage-title">待补充作品 01</h2>
+                    <p id="stage-summary">说明待补充</p>
+                  </div>
                 </div>
+              </div>
 
-                <!-- CTA 按钮 -->
-                <a href="#contact" class="hidden md:block bg-primary-500 hover:bg-primary-600 px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-primary-500/30">
-                    开始合作
-                </a>
+              <button class="stage-preview stage-preview--next" id="next-preview" type="button" aria-label="查看下一个作品">
+                <span class="preview-card"></span>
+              </button>
+            </div>
 
-                <!-- 移动端菜单按钮 -->
-                <button id="mobile-menu-btn" class="md:hidden text-gray-300">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+            <div class="stage-controls" aria-label="作品切换">
+              <button class="arrow-button" id="prev-work" type="button" aria-label="上一个作品">←</button>
+              <button class="arrow-button" id="next-work" type="button" aria-label="下一个作品">→</button>
+            </div>
+          </section>
+
+          <aside class="info-panel" aria-label="当前作品信息">
+            <div class="info-top">
+              <p class="eyebrow">Project note</p>
+              <p class="info-index" id="info-index">01</p>
+              <h2 id="info-title">待补充作品 01</h2>
+              <p class="info-type" id="info-type">作品</p>
+              <div class="info-notes" id="info-notes" aria-label="作品改造说明">
+                <p><span>原来</span><span id="info-before">待补充</span></p>
+                <p><span>现在</span><span id="info-after">待补充</span></p>
+                <p><span>解决了什么</span><span id="info-solved">待补充</span></p>
+              </div>
+              <div class="info-actions" aria-label="作品操作">
+                <button class="info-action info-action--compare" id="compare-toggle" type="button">前后对比</button>
+                <button class="info-action" id="explanation-toggle" type="button">改造说明</button>
+                <button class="info-action" id="source-toggle" type="button">查看源文件</button>
+                <a class="project-link" id="project-link" href="#" target="_blank" rel="noreferrer" hidden>查看作品</a>
+              </div>
+            </div>
+            <div class="info-bottom">
+              <div class="info-progress"><span id="progress-label">01 / 04</span><span class="progress-line" aria-hidden="true"><span id="progress-fill"></span></span></div>
+              <p class="info-help">左右方向键 / 拖动舞台</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="panel state-page" id="pricing-panel" role="tabpanel" aria-labelledby="pricing-tab" hidden>
+        <div class="state-card">
+          <p class="eyebrow">Pricing</p>
+          <h1>定价图暂时留空</h1>
+          <p class="state-subtitle">有定价图后，再放进这里。</p>
+          <div class="empty-mark">待补充</div>
+        </div>
+        <aside class="state-aside" aria-label="定价说明">
+          <span class="state-aside-number">02</span>
+          <p>不放假套餐，也不放还没确定的数字。</p>
+        </aside>
+      </section>
+
+      <section class="panel state-page" id="contact-panel" role="tabpanel" aria-labelledby="contact-tab" hidden>
+        <div class="state-card contact-card">
+          <p class="eyebrow">Contact</p>
+          <h1>联系方式</h1>
+          <div class="contact-list">
+            <div class="contact-row">
+              <span class="contact-label">抖音</span>
+              <span class="contact-value">66558164797</span>
+              <div class="contact-actions">
+                <button class="contact-action contact-copy" type="button" data-copy="66558164797">复制</button>
+                <button class="contact-qr-trigger" type="button" data-qr-src="./assets/contact/douyin.jpg" data-qr-label="抖音" aria-haspopup="dialog" aria-label="查看抖音二维码">
+                  <span class="contact-qr-thumb" aria-hidden="true"><span>二维码<br><strong>待补充</strong></span></span>
                 </button>
+              </div>
             </div>
+            <div class="contact-row">
+              <span class="contact-label">闲鱼</span>
+              <span class="contact-value">二维码联系</span>
+              <div class="contact-actions">
+                <button class="contact-action contact-qr-download" type="button" data-download-src="./assets/contact/xianyu.jpg" data-download-label="闲鱼">下载二维码</button>
+                <button class="contact-qr-trigger" type="button" data-qr-src="./assets/contact/xianyu.jpg" data-qr-label="闲鱼" aria-haspopup="dialog" aria-label="查看闲鱼二维码">
+                  <span class="contact-qr-thumb" aria-hidden="true"><span>二维码<br><strong>待补充</strong></span></span>
+                </button>
+              </div>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">微信</span>
+              <span class="contact-value">qwq1314L520</span>
+              <div class="contact-actions">
+                <button class="contact-action contact-copy" id="wechat-copy" type="button" data-copy="qwq1314L520">复制</button>
+                <button class="contact-qr-trigger" type="button" data-qr-src="./assets/contact/wechat.jpg" data-qr-label="微信" aria-haspopup="dialog" aria-label="查看微信二维码">
+                  <span class="contact-qr-thumb" aria-hidden="true"><span>二维码<br><strong>待补充</strong></span></span>
+                </button>
+              </div>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">小红书</span>
+              <span class="contact-value">18428334021</span>
+              <div class="contact-actions">
+                <button class="contact-action contact-copy" type="button" data-copy="18428334021">复制</button>
+                <button class="contact-qr-trigger" type="button" data-qr-src="./assets/contact/xiaohongshu.jpg" data-qr-label="小红书" aria-haspopup="dialog" aria-label="查看小红书二维码">
+                  <span class="contact-qr-thumb" aria-hidden="true"><span>二维码<br><strong>待补充</strong></span></span>
+                </button>
+              </div>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">GitHub</span>
+              <a class="contact-value" href="https://github.com/stlldsa" target="_blank" rel="noreferrer">github.com/stlldsa</a>
+              <span aria-hidden="true">↗</span>
+            </div>
+          </div>
         </div>
+        <aside class="contact-aside" aria-label="团子噜噜工作室 Logo">
+          <img src="./assets/brand/tuanzilulu-logo.png" width="240" height="240" alt="团子噜噜工作室 Logo" loading="lazy">
+        </aside>
+      </section>
 
-        <!-- 移动端菜单 -->
-        <div id="mobile-menu" class="hidden md:hidden glass border-t border-white/10">
-            <div class="px-6 py-4 space-y-4">
-                <a href="#home" class="block text-gray-300 hover:text-white">首页</a>
-                <a href="#about" class="block text-gray-300 hover:text-white">关于我们</a>
-                <a href="#services" class="block text-gray-300 hover:text-white">服务</a>
-                <a href="#portfolio" class="block text-gray-300 hover:text-white">作品</a>
-                <a href="#contact" class="block text-gray-300 hover:text-white">联系</a>
+      <dialog class="workspace-dialog" id="explanation-dialog" aria-labelledby="explanation-title">
+        <div class="dialog-surface">
+          <header class="dialog-header">
+            <div>
+              <p class="eyebrow">Project note</p>
+              <h2 id="explanation-title">改造说明</h2>
             </div>
+            <button class="dialog-close" type="button" data-close-dialog="explanation-dialog" aria-label="关闭改造说明">×</button>
+          </header>
+          <div class="dialog-content" id="explanation-content"></div>
         </div>
-    </nav>
+      </dialog>
 
-    <!-- Hero 区域 -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- 背景视频 -->
-        <div class="absolute inset-0 z-0">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-futuristic-devices-99786-large.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900"></div>
+      <dialog class="workspace-dialog workspace-dialog--source" id="source-dialog" aria-labelledby="source-title">
+        <div class="dialog-surface">
+          <header class="dialog-header">
+            <div>
+              <p class="eyebrow">Open archive</p>
+              <h2 id="source-title">完整源文件</h2>
+            </div>
+            <button class="dialog-close" type="button" data-close-dialog="source-dialog" aria-label="关闭源文件">×</button>
+          </header>
+          <div class="source-layout">
+            <div class="source-tabs" id="source-tabs" role="tablist" aria-label="源文件列表"></div>
+            <div class="source-code" id="source-code" role="region" aria-label="源文件内容" tabindex="0">
+              <pre><code id="source-code-content">源文件暂未提供</code></pre>
+            </div>
+          </div>
+          <p class="dialog-status" id="source-status" role="status" aria-live="polite"></p>
         </div>
+      </dialog>
 
-        <!-- 装饰元素 -->
-        <div class="absolute top-20 left-10 w-72 h-72 bg-primary-500/20 rounded-full blur-3xl animate-float"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
-
-        <!-- 内容 -->
-        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
-            <div class="animate-fade-in-up" style="animation-delay: 0.2s;">
-                <span class="inline-block px-4 py-2 rounded-full glass text-sm text-primary-300 mb-6">
-                    🚀 创意 · 技术 · 未来
-                </span>
+      <dialog class="workspace-dialog workspace-dialog--qr" id="qr-dialog" aria-labelledby="qr-title">
+        <div class="dialog-surface">
+          <header class="dialog-header">
+            <div>
+              <p class="eyebrow">Contact QR</p>
+              <h2 id="qr-title">联系方式二维码</h2>
             </div>
-
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up" style="animation-delay: 0.4s;">
-                构建
-                <span class="gradient-text">数字未来</span>
-                <br>的创意工作室
-            </h1>
-
-            <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.6s;">
-                我们将创意与技术完美融合，为您打造令人惊叹的数字体验
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.8s;">
-                <a href="#portfolio" class="px-8 py-4 bg-primary-500 hover:bg-primary-600 rounded-full font-semibold text-lg transition-all hover:shadow-lg hover:shadow-primary-500/30 hover:-translate-y-1">
-                    查看作品
-                </a>
-                <a href="#contact" class="px-8 py-4 glass hover:bg-white/10 rounded-full font-semibold text-lg transition-all border border-white/20 hover:-translate-y-1">
-                    联系我们
-                </a>
+            <button class="dialog-close" type="button" data-close-dialog="qr-dialog" aria-label="关闭微信二维码">×</button>
+          </header>
+          <div class="qr-dialog-content">
+            <div class="qr-preview" id="qr-preview" aria-live="polite">
+              <span class="qr-empty" id="qr-empty">二维码暂未提供</span>
+              <img id="wechat-qr-image" alt="工作微信二维码" hidden>
             </div>
+            <p class="dialog-status" id="qr-status">先显示微信号；二维码图片之后再补。</p>
+            <div class="qr-dialog-actions">
+              <button class="dialog-action" id="qr-save" type="button" hidden>保存二维码</button>
+            </div>
+          </div>
         </div>
+      </dialog>
+    </main>
 
-        <!-- 滚动提示 -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-            <i data-lucide="chevron-down" class="w-8 h-8 text-gray-400"></i>
-        </div>
-    </section>
-
-    <!-- 关于我们 -->
-    <section id="about" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <!-- 左侧内容 -->
-                <div>
-                    <span class="text-primary-400 font-mono text-sm">关于我们</span>
-                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">
-                        用
-                        <span class="gradient-text">技术</span>
-                        实现创意
-                    </h2>
-                    <p class="text-gray-400 text-lg leading-relaxed mb-6">
-                        TuanZiLuLu 工作室是一支充满激情的创意团队，我们专注于将前沿技术与卓越设计相结合，为客户提供独一无二的数字解决方案。
-                    </p>
-                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
-                        从品牌设计到 web 开发，从移动应用到数字营销，我们用专业和热情，帮助每一个梦想照进现实。
-                    </p>
-
-                    <!-- 数据统计 -->
-                    <div class="grid grid-cols-3 gap-8">
-                        <div>
-                            <div class="text-4xl font-bold gradient-text">50+</div>
-                            <div class="text-gray-500 mt-1">完成项目</div>
-                        </div>
-                        <div>
-                            <div class="text-4xl font-bold gradient-text">30+</div>
-                            <div class="text-gray-500 mt-1">满意客户</div>
-                        </div>
-                        <div>
-                            <div class="text-4xl font-bold gradient-text">5+</div>
-                            <div class="text-gray-500 mt-1">年经验</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 右侧视觉 -->
-                <div class="relative">
-                    <div class="glass rounded-3xl p-8 card-hover">
-                        <div class="aspect-video bg-gradient-to-br from-primary-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center overflow-hidden">
-                            <video autoplay muted loop playsinline class="w-full h-full object-cover rounded-2xl">
-                                <source src="https://assets.mixkit.co/videos/preview/mixkit-going-down-a-tunnel-with-neon-lights-28078-large.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
-                    <!-- 装饰 -->
-                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary-500/30 rounded-full blur-2xl"></div>
-                    <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-500/30 rounded-full blur-2xl"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 服务 -->
-    <section id="services" class="py-32 px-6 bg-slate-800/50">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-primary-400 font-mono text-sm">我们的服务</span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-4">
-                    专业
-                    <span class="gradient-text">解决方案</span>
-                </h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- 服务卡片 1 -->
-                <div class="glass rounded-3xl p-8 card-hover group">
-                    <div class="w-16 h-16 bg-primary-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary-500/30 transition-colors">
-                        <i data-lucide="palette" class="w-8 h-8 text-primary-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">品牌设计</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        从 Logo 设计到完整的品牌视觉系统，我们帮助您建立独特且令人难忘的品牌形象。
-                    </p>
-                </div>
-
-                <!-- 服务卡片 2 -->
-                <div class="glass rounded-3xl p-8 card-hover group">
-                    <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-500/30 transition-colors">
-                        <i data-lucide="code" class="w-8 h-8 text-purple-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Web 开发</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        使用最新的前端技术，为您打造高性能、响应式、用户体验卓越的现代化网站和 Web 应用。
-                    </p>
-                </div>
-
-                <!-- 服务卡片 3 -->
-                <div class="glass rounded-3xl p-8 card-hover group">
-                    <div class="w-16 h-16 bg-pink-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-pink-500/30 transition-colors">
-                        <i data-lucide="smartphone" class="w-8 h-8 text-pink-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">移动应用</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        为 iOS 和 Android 平台开发原生或跨平台移动应用，让您的服务触达更多用户。
-                    </p>
-                </div>
-
-                <!-- 服务卡片 4 -->
-                <div class="glass rounded-3xl p-8 card-hover group">
-                    <div class="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-500/30 transition-colors">
-                        <i data-lucide="video" class="w-8 h-8 text-green-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">视频制作</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        专业的视频拍摄、剪辑和特效制作，为您的品牌故事增添视觉冲击力。
-                    </p>
-                </div>
-
-                <!-- 服务卡片 5 -->
-                <div class="glass rounded-3xl p-8 card-hover group">
-                    <div class="w-16 h-16 bg-yellow-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-yellow-500/30 transition-colors">
-                        <i data-lucide="trending-up" class="w-8 h-8 text-yellow-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">数字营销</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        SEO 优化、社交媒体营销、内容策略，帮助您在数字世界中获得更多曝光和转化。
-                    </p>
-                </div>
-
-                <!-- 服务卡片 6 -->
-                <div class="glass rounded-3xl p-8 card-hover group">
-                    <div class="w-16 h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-cyan-500/30 transition-colors">
-                        <i data-lucide="brain" class="w-8 h-8 text-cyan-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">AI 解决方案</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        将人工智能技术融入您的业务，从智能客服到数据分析，提升效率和用户体验。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 作品展示 -->
-    <section id="portfolio" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-primary-400 font-mono text-sm">精选作品</span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-4">
-                    我们的
-                    <span class="gradient-text">成功案例</span>
-                </h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- 作品卡片 1 -->
-                <div class="glass rounded-3xl overflow-hidden card-hover group">
-                    <div class="aspect-video bg-gradient-to-br from-blue-500/20 to-cyan-500/20 relative overflow-hidden">
-                        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-futuristic-devices-99786-large.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-primary-400 text-sm font-mono">Web 开发</span>
-                        <h3 class="text-2xl font-bold mt-2 mb-3">未来科技官网</h3>
-                        <p class="text-gray-400">为某科技公司打造的现代化官网，采用 WebGL 技术实现沉浸式体验。</p>
-                    </div>
-                </div>
-
-                <!-- 作品卡片 2 -->
-                <div class="glass rounded-3xl overflow-hidden card-hover group">
-                    <div class="aspect-video bg-gradient-to-br from-purple-500/20 to-pink-500/20 relative overflow-hidden">
-                        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-going-down-a-tunnel-with-neon-lights-28078-large.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-purple-400 text-sm font-mono">品牌设计</span>
-                        <h3 class="text-2xl font-bold mt-2 mb-3">潮牌视觉系统</h3>
-                        <p class="text-gray-400">为新锐潮牌打造的全套视觉识别系统，从 Logo 到包装设计。</p>
-                    </div>
-                </div>
-
-                <!-- 作品卡片 3 -->
-                <div class="glass rounded-3xl overflow-hidden card-hover group">
-                    <div class="aspect-video bg-gradient-to-br from-green-500/20 to-emerald-500/20 relative overflow-hidden">
-                        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-white-sand-beach-and-palm-trees-2406-large.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-green-400 text-sm font-mono">移动应用</span>
-                        <h3 class="text-2xl font-bold mt-2 mb-3">旅行规划 App</h3>
-                        <p class="text-gray-400">一款帮助用户规划旅行的移动应用，支持 AI 智能推荐。</p>
-                    </div>
-                </div>
-
-                <!-- 作品卡片 4 -->
-                <div class="glass rounded-3xl overflow-hidden card-hover group">
-                    <div class="aspect-video bg-gradient-to-br from-orange-500/20 to-red-500/20 relative overflow-hidden">
-                        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-fireworks-over-a-river-at-night-4789-large.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-orange-400 text-sm font-mono">视频制作</span>
-                        <h3 class="text-2xl font-bold mt-2 mb-3">品牌宣传片</h3>
-                        <p class="text-gray-400">为知名品牌制作的年度宣传片，获得行业大奖提名。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 联系我们 -->
-    <section id="contact" class="py-32 px-6 bg-slate-800/50">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-primary-400 font-mono text-sm">联系我们</span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-4">
-                    开始您的
-                    <span class="gradient-text">下一个项目</span>
-                </h2>
-                <p class="text-gray-400 mt-4 text-lg">
-                    准备好将您的想法变为现实了吗？立即联系我们！
-                </p>
-            </div>
-
-            <div class="glass rounded-3xl p-8 md:p-12">
-                <form class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">姓名</label>
-                            <input type="text" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl focus:outline-none focus:border-primary-500 transition-colors" placeholder="您的姓名">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">邮箱</label>
-                            <input type="email" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl focus:outline-none focus:border-primary-500 transition-colors" placeholder="your@email.com">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">项目类型</label>
-                        <select class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl focus:outline-none focus:border-primary-500 transition-colors">
-                            <option>品牌设计</option>
-                            <option>Web 开发</option>
-                            <option>移动应用</option>
-                            <option>视频制作</option>
-                            <option>数字营销</option>
-                            <option>其他</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">项目描述</label>
-                        <textarea rows="4" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl focus:outline-none focus:border-primary-500 transition-colors resize-none" placeholder="请描述您的项目需求..."></textarea>
-                    </div>
-                    <button type="submit" class="w-full py-4 bg-primary-500 hover:bg-primary-600 rounded-xl font-semibold text-lg transition-all hover:shadow-lg hover:shadow-primary-500/30">
-                        发送消息
-                    </button>
-                </form>
-            </div>
-
-            <!-- 联系方式 -->
-            <div class="grid md:grid-cols-3 gap-8 mt-12">
-                <div class="text-center">
-                    <div class="w-12 h-12 bg-primary-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="mail" class="w-6 h-6 text-primary-400"></i>
-                    </div>
-                    <div class="text-gray-400">邮箱</div>
-                    <div class="font-medium">hello@tuanzilulu.xyz</div>
-                </div>
-                <div class="text-center">
-                    <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="message-circle" class="w-6 h-6 text-purple-400"></i>
-                    </div>
-                    <div class="text-gray-400">微信</div>
-                    <div class="font-medium">TuanZiLuLu</div>
-                </div>
-                <div class="text-center">
-                    <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="github" class="w-6 h-6 text-pink-400"></i>
-                    </div>
-                    <div class="text-gray-400">GitHub</div>
-                    <div class="font-medium">github.com/stlldsa</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="py-8 px-6 border-t border-white/10">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="text-gray-400 mb-4 md:mb-0">
-                © 2024 TuanZiLuLu. All rights reserved.
-            </div>
-            <div class="flex items-center space-x-6">
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="twitter" class="w-5 h-5"></i>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="instagram" class="w-5 h-5"></i>
-                </a>
-                <a href="https://github.com/stlldsa" class="text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="github" class="w-5 h-5"></i>
-                </a>
-            </div>
-        </div>
+    <footer class="utility-bar">
+      <div class="utility-left"><span class="utility-dot" aria-hidden="true"></span><span class="utility-status" id="utility-status">正在看作品</span></div>
+      <div class="utility-controls" aria-label="底部作品切换">
+        <button class="footer-button" id="footer-prev" type="button">上一个</button>
+        <button class="footer-button" id="footer-next" type="button">下一个</button>
+      </div>
+      <span id="live-region" class="live-region" aria-live="polite">当前作品：待补充作品 01</span>
     </footer>
+  </div>
 
-    <!-- JavaScript -->
-    <script>
-        // 初始化 Lucide Icons
-        lucide.createIcons();
+  <script src="./assets/contact/download-data.js"></script>
+  <script>
+    (() => {
+      "use strict";
 
-        // 移动端菜单切换
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+      // 后续只需填写 cover、compare、explanation 和 source；目前全部留空。
+      const works = [
+        {
+          id: "work-01", title: "待补充作品 01", category: "作品", summary: "",
+          cover: "", video: "", poster: "", link: "", alt: "待补充作品 01", accent: "#F28A1D",
+          compare: { enabled: true, start: 50, before: { src: "", alt: "原稿待补充" }, after: { src: "", alt: "改造后待补充" } },
+          explanation: { before: "", after: "", solved: "" },
+          source: { status: "暂未提供", version: "", license: "", files: [] }
+        },
+        {
+          id: "work-02", title: "待补充作品 02", category: "作品", summary: "",
+          cover: "", video: "", poster: "", link: "", alt: "待补充作品 02", accent: "#2E86E9",
+          compare: { enabled: true, start: 50, before: { src: "", alt: "原稿待补充" }, after: { src: "", alt: "改造后待补充" } },
+          explanation: { before: "", after: "", solved: "" },
+          source: { status: "暂未提供", version: "", license: "", files: [] }
+        },
+        {
+          id: "work-03", title: "待补充作品 03", category: "作品", summary: "",
+          cover: "", video: "", poster: "", link: "", alt: "待补充作品 03", accent: "#168447",
+          compare: { enabled: true, start: 50, before: { src: "", alt: "原稿待补充" }, after: { src: "", alt: "改造后待补充" } },
+          explanation: { before: "", after: "", solved: "" },
+          source: { status: "暂未提供", version: "", license: "", files: [] }
+        },
+        {
+          id: "work-04", title: "待补充作品 04", category: "作品", summary: "",
+          cover: "", video: "", poster: "", link: "", alt: "待补充作品 04", accent: "#7654B8",
+          compare: { enabled: true, start: 50, before: { src: "", alt: "原稿待补充" }, after: { src: "", alt: "改造后待补充" } },
+          explanation: { before: "", after: "", solved: "" },
+          source: { status: "暂未提供", version: "", license: "", files: [] }
+        }
+      ];
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+      // 提供二维码后只需填写 src；现在保持为空，不生成破损图片。
+      const contactQr = { src: "", alt: "团子噜噜工作室工作微信二维码" };
 
-        // 点击菜单项后关闭菜单
-        mobileMenu.querySelectorAll('a').forEach(item => {
-            item.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+      const state = {
+        panel: "works",
+        activeWork: 0,
+        workMode: "work",
+        overlay: null,
+        sourceFile: null,
+        returnFocus: null,
+        compareRange: null,
+        isAnimating: false,
+        reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+        pointerStartX: 0,
+        pointerStartY: 0,
+        pointerDeltaX: 0,
+        dragging: false
+      };
 
-        // 滚动动画观察器
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+      const shell = document.querySelector(".site-shell");
+      const stageViewport = document.querySelector("#stage-viewport");
+      const stageContent = document.querySelector("#stage-content");
+      const activeMedia = document.querySelector("#active-media");
+      const workList = document.querySelector("#work-list");
+      const prevPreview = document.querySelector("#prev-preview");
+      const nextPreview = document.querySelector("#next-preview");
+      const prevWork = document.querySelector("#prev-work");
+      const nextWork = document.querySelector("#next-work");
+      const footerPrev = document.querySelector("#footer-prev");
+      const footerNext = document.querySelector("#footer-next");
+      const projectLink = document.querySelector("#project-link");
+      const compareToggle = document.querySelector("#compare-toggle");
+      const explanationToggle = document.querySelector("#explanation-toggle");
+      const sourceToggle = document.querySelector("#source-toggle");
+      const explanationDialog = document.querySelector("#explanation-dialog");
+      const sourceDialog = document.querySelector("#source-dialog");
+      const qrTriggers = document.querySelectorAll(".contact-qr-trigger");
+      const qrDialog = document.querySelector("#qr-dialog");
+      const qrTitle = document.querySelector("#qr-title");
+      const qrEmpty = document.querySelector("#qr-empty");
+      const qrImage = document.querySelector("#wechat-qr-image");
+      const qrStatus = document.querySelector("#qr-status");
+      const qrSave = document.querySelector("#qr-save");
+      const explanationContent = document.querySelector("#explanation-content");
+      const sourceTabs = document.querySelector("#source-tabs");
+      const sourceCodeContent = document.querySelector("#source-code-content");
+      const sourceStatus = document.querySelector("#source-status");
+      const progressFill = document.querySelector("#progress-fill");
+      const liveRegion = document.querySelector("#live-region");
+
+      const byId = (id) => document.getElementById(id);
+      const pad = (number) => String(number + 1).padStart(2, "0");
+      const getPanelFromHash = () => {
+        const value = window.location.hash.replace("#", "");
+        return ["works", "pricing", "contact"].includes(value) ? value : "works";
+      };
+
+      function makePlaceholder(item, preview = false) {
+        const wrapper = document.createElement("div");
+        wrapper.className = preview ? "preview-media" : "media-placeholder";
+        wrapper.style.setProperty("--accent", item.accent);
+        const copy = document.createElement("div");
+        copy.className = "placeholder-copy";
+        const label = document.createElement("span");
+        label.textContent = preview ? "WORK" : "作品画面";
+        const number = document.createElement("strong");
+        number.textContent = pad(works.indexOf(item));
+        const hint = document.createElement("small");
+        hint.textContent = preview ? "待补充" : "素材待补充";
+        copy.append(label, number, hint);
+        wrapper.append(copy);
+        return wrapper;
+      }
+
+      function renderMedia(container, item, preview = false) {
+        container.replaceChildren();
+        container.style.setProperty("--accent", item.accent);
+        if (!item.cover && !item.video) {
+          container.append(makePlaceholder(item, preview));
+          return;
+        }
+
+        const media = item.video ? document.createElement("video") : document.createElement("img");
+        media.src = item.video || item.cover;
+        media.alt = item.alt;
+        media.loading = preview ? "lazy" : "eager";
+        if (item.video) {
+          media.controls = true;
+          media.playsInline = true;
+          media.preload = "metadata";
+          if (item.poster) media.poster = item.poster;
+        } else {
+          media.decoding = "async";
+        }
+        media.addEventListener("error", () => {
+          container.replaceChildren(makePlaceholder(item, preview));
+        }, { once: true });
+        container.append(media);
+      }
+
+      function renderCompare(container, item) {
+        container.replaceChildren();
+        container.style.setProperty("--accent", item.accent);
+        const frame = document.createElement("div");
+        frame.className = "compare-frame";
+        frame.style.setProperty("--split", `${item.compare?.start || 50}%`);
+
+        const makeLayer = (side, data) => {
+          const layer = document.createElement("div");
+          layer.className = `compare-layer compare-layer--${side}`;
+          layer.style.setProperty("--accent", item.accent);
+          if (data?.src) {
+            const image = document.createElement("img");
+            image.src = data.src;
+            image.alt = data.alt || `${side === "before" ? "原稿" : "改造后"}预览`;
+            image.loading = "eager";
+            image.decoding = "async";
+            image.addEventListener("error", () => {
+              layer.replaceChildren(makeComparePlaceholder(item, side));
+            }, { once: true });
+            layer.append(image);
+          } else {
+            layer.append(makeComparePlaceholder(item, side));
+          }
+          return layer;
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in-up');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // 观察所有需要动画的元素
-        document.querySelectorAll('section > div').forEach(el => {
-            el.style.opacity = '0';
-            observer.observe(el);
+        const before = makeLayer("before", item.compare?.before);
+        const after = makeLayer("after", item.compare?.after);
+        const beforeLabel = document.createElement("span");
+        beforeLabel.className = "compare-label compare-label--before";
+        beforeLabel.textContent = "原稿";
+        const afterLabel = document.createElement("span");
+        afterLabel.className = "compare-label compare-label--after";
+        afterLabel.textContent = "改造后";
+        const divider = document.createElement("span");
+        divider.className = "compare-divider";
+        divider.setAttribute("aria-hidden", "true");
+        const range = document.createElement("input");
+        range.className = "compare-range";
+        range.type = "range";
+        range.min = "0";
+        range.max = "100";
+        range.step = "1";
+        range.value = String(item.compare?.start || 50);
+        range.setAttribute("aria-label", `${item.title}原稿与改造后的分界线`);
+        range.setAttribute("aria-valuetext", `${range.value}% 原稿，${100 - Number(range.value)}% 改造后`);
+        range.addEventListener("input", () => {
+          frame.style.setProperty("--split", `${range.value}%`);
+          range.setAttribute("aria-valuetext", `${range.value}% 原稿，${100 - Number(range.value)}% 改造后`);
         });
+        frame.append(before, after, beforeLabel, afterLabel, divider, range);
+        container.append(frame);
+        state.compareRange = range;
+      }
 
-        // 导航栏滚动效果
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
+      function makeComparePlaceholder(item, side) {
+        const placeholder = document.createElement("div");
+        placeholder.className = `compare-placeholder compare-placeholder--${side}`;
+        const label = document.createElement("span");
+        label.textContent = side === "before" ? "原稿素材待补充" : "改造后素材待补充";
+        const number = document.createElement("strong");
+        number.textContent = pad(works.indexOf(item));
+        placeholder.append(label, number);
+        return placeholder;
+      }
 
-            if (currentScroll > 100) {
-                document.querySelector('nav').classList.add('shadow-lg');
-            } else {
-                document.querySelector('nav').classList.remove('shadow-lg');
+      function renderExplanation(item) {
+        explanationContent.replaceChildren();
+        const rows = [
+          ["原来", item.explanation?.before],
+          ["现在", item.explanation?.after],
+          ["解决了什么", item.explanation?.solved]
+        ];
+        rows.forEach(([label, value]) => {
+          const row = document.createElement("div");
+          row.className = "explanation-row";
+          const title = document.createElement("strong");
+          title.textContent = label;
+          const body = document.createElement("p");
+          body.textContent = value || "待补充";
+          row.append(title, body);
+          explanationContent.append(row);
+        });
+      }
+
+      async function selectSourceFile(file, button) {
+        sourceTabs.querySelectorAll("[role=tab]").forEach((tab) => {
+          tab.setAttribute("aria-selected", String(tab === button));
+          tab.tabIndex = tab === button ? 0 : -1;
+        });
+        state.sourceFile = file.id;
+        sourceStatus.textContent = file.name || "当前源文件";
+        if (file.content) {
+          sourceCodeContent.textContent = file.content;
+          return;
+        }
+        if (!file.href) {
+          sourceCodeContent.textContent = "该文件暂未提供";
+          return;
+        }
+        try {
+          const response = await fetch(file.href, { cache: "no-store" });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          sourceCodeContent.textContent = await response.text();
+        } catch {
+          sourceCodeContent.textContent = "源文件暂时无法读取";
+          sourceStatus.textContent = `${file.name || "当前文件"} · 可尝试直接打开文件`;
+        }
+      }
+
+      function renderSource(item) {
+        sourceTabs.replaceChildren();
+        sourceCodeContent.textContent = "源文件暂未提供";
+        sourceStatus.textContent = item.source?.status || "源文件暂未提供";
+        const files = item.source?.files || [];
+        if (!files.length) return;
+        files.forEach((file, index) => {
+          const button = document.createElement("button");
+          button.className = "source-tab";
+          button.type = "button";
+          button.setAttribute("role", "tab");
+          button.setAttribute("aria-selected", String(index === 0));
+          button.tabIndex = index === 0 ? 0 : -1;
+          button.textContent = file.name || `文件 ${index + 1}`;
+          button.addEventListener("click", () => selectSourceFile(file, button));
+          button.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+              event.preventDefault();
+              sourceTabs.querySelectorAll("[role=tab]")[Math.min(index + 1, files.length - 1)].focus();
             }
-
-            lastScroll = currentScroll;
+            if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+              event.preventDefault();
+              sourceTabs.querySelectorAll("[role=tab]")[Math.max(index - 1, 0)].focus();
+            }
+          });
+          sourceTabs.append(button);
         });
+        selectSourceFile(files[0], sourceTabs.querySelector("[role=tab]"));
+      }
 
-        // 平滑滚动到锚点
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+      function renderContactQr() {
+        qrTriggers.forEach((trigger) => {
+          const thumb = trigger.querySelector(".contact-qr-thumb");
+          const src = trigger.dataset.qrSrc;
+          thumb.replaceChildren();
+          if (!src) {
+            const empty = document.createElement("span");
+            empty.innerHTML = "二维码<br><strong>待补充</strong>";
+            thumb.append(empty);
+            return;
+          }
+          const thumbnail = document.createElement("img");
+          thumbnail.src = src;
+          thumbnail.alt = "";
+          thumbnail.loading = "lazy";
+          thumbnail.addEventListener("error", () => {
+            thumb.textContent = "二维码暂时无法读取";
+          }, { once: true });
+          thumb.append(thumbnail);
         });
-    </script>
+      }
 
+      function renderQrDialog() {
+        const hasImage = Boolean(contactQr.src);
+        qrTitle.textContent = `${contactQr.label || "联系方式"}二维码`;
+        qrEmpty.hidden = hasImage;
+        qrImage.hidden = !hasImage;
+        qrSave.hidden = !hasImage;
+        qrSave.disabled = !hasImage;
+        if (hasImage) {
+          qrImage.src = contactQr.src;
+          qrImage.alt = contactQr.alt;
+          qrSave.setAttribute("aria-label", `保存${contactQr.label || "联系方式"}二维码`);
+          qrStatus.textContent = `${contactQr.label}二维码 · 点击关闭放大查看。`;
+        } else {
+          qrImage.removeAttribute("src");
+          qrStatus.textContent = `${contactQr.label || "联系方式"}二维码暂未提供。`;
+        }
+      }
+
+      function openContactQr(trigger) {
+        contactQr.src = trigger.dataset.qrSrc || "";
+        contactQr.label = trigger.dataset.qrLabel || "联系方式";
+        contactQr.alt = `${contactQr.label}二维码`;
+        openDialog(qrDialog, trigger, renderQrDialog);
+      }
+
+      function openDialog(dialog, trigger, render) {
+        if (state.overlay) return;
+        state.returnFocus = trigger;
+        state.overlay = dialog.id;
+        render(works[state.activeWork]);
+        dialog.showModal();
+        dialog.querySelector(".dialog-close")?.focus();
+      }
+
+      function closeDialog(dialog) {
+        if (dialog.open) dialog.close();
+        state.overlay = null;
+        const trigger = state.returnFocus;
+        state.returnFocus = null;
+        if (trigger && document.contains(trigger)) trigger.focus();
+      }
+
+      function exitCompare(restoreFocus = true) {
+        state.workMode = "work";
+        renderWork();
+        if (restoreFocus) compareToggle.focus();
+      }
+
+      function renderPreview(button, item, index) {
+        const card = button.querySelector(".preview-card");
+        card.replaceChildren();
+        if (!item) {
+          button.disabled = true;
+          button.removeAttribute("aria-label");
+          return;
+        }
+        button.disabled = false;
+        button.setAttribute("aria-label", `查看${index + 1 === state.activeWork ? "当前" : "第" + pad(index) + "件"}作品`);
+        renderMedia(card, item, true);
+        const title = document.createElement("span");
+        title.className = "preview-title";
+        title.textContent = item.title;
+        card.append(title);
+      }
+
+      function renderWorkList() {
+        workList.replaceChildren();
+        works.forEach((item, index) => {
+          const button = document.createElement("button");
+          button.className = "work-tab";
+          button.type = "button";
+          button.id = `${item.id}-tab`;
+          button.setAttribute("role", "tab");
+          button.setAttribute("aria-controls", "work-stage");
+          button.setAttribute("aria-selected", String(index === state.activeWork));
+          button.tabIndex = index === state.activeWork ? 0 : -1;
+          button.addEventListener("click", () => selectWork(index));
+
+          const number = document.createElement("span");
+          number.className = "work-tab-number";
+          number.textContent = pad(index);
+          const title = document.createElement("span");
+          title.className = "work-tab-title";
+          title.textContent = item.title;
+          const type = document.createElement("span");
+          type.className = "work-tab-type";
+          type.textContent = item.category;
+          button.append(number, title, type);
+          workList.append(button);
+        });
+      }
+
+      function renderWork() {
+        const item = works[state.activeWork];
+        shell.style.setProperty("--accent", item.accent);
+        byId("index-count").textContent = `${pad(state.activeWork)} / ${pad(works.length - 1)}`;
+        byId("stage-number").textContent = pad(state.activeWork);
+        byId("stage-category").textContent = item.category;
+        byId("stage-title").textContent = item.title;
+        byId("stage-summary").textContent = state.workMode === "compare" ? "左边原稿，右边改造后" : (item.summary || "说明待补充");
+        byId("info-index").textContent = pad(state.activeWork);
+        byId("info-title").textContent = item.title;
+        byId("info-type").textContent = item.category;
+        byId("info-before").textContent = item.explanation?.before || "待补充";
+        byId("info-after").textContent = item.explanation?.after || "待补充";
+        byId("info-solved").textContent = item.explanation?.solved || "待补充";
+        byId("progress-label").textContent = `${pad(state.activeWork)} / ${pad(works.length - 1)}`;
+        progressFill.style.width = `${((state.activeWork + 1) / works.length) * 100}%`;
+        liveRegion.textContent = `当前作品：${item.title}`;
+        byId("utility-status").textContent = `正在看 ${item.title}`;
+
+        if (state.workMode === "compare") renderCompare(activeMedia, item);
+        else renderMedia(activeMedia, item);
+        renderPreview(prevPreview, works[state.activeWork - 1], state.activeWork - 1);
+        renderPreview(nextPreview, works[state.activeWork + 1], state.activeWork + 1);
+        prevWork.disabled = state.activeWork === 0;
+        nextWork.disabled = state.activeWork === works.length - 1;
+        footerPrev.disabled = prevWork.disabled;
+        footerNext.disabled = nextWork.disabled;
+
+        if (item.link) {
+          projectLink.hidden = false;
+          projectLink.href = item.link;
+        } else {
+          projectLink.hidden = true;
+          projectLink.removeAttribute("href");
+        }
+
+        compareToggle.textContent = state.workMode === "compare" ? "返回作品" : "前后对比";
+        compareToggle.setAttribute("aria-pressed", String(state.workMode === "compare"));
+        explanationToggle.disabled = false;
+        sourceToggle.disabled = false;
+
+        workList.querySelectorAll("[role=tab]").forEach((tab, index) => {
+          tab.setAttribute("aria-selected", String(index === state.activeWork));
+          tab.tabIndex = index === state.activeWork ? 0 : -1;
+        });
+      }
+
+      function renderPanel() {
+        const panels = { works: byId("works-panel"), pricing: byId("pricing-panel"), contact: byId("contact-panel") };
+        const tabs = document.querySelectorAll(".state-tab");
+        if (state.panel !== "works") {
+          if (explanationDialog.open) closeDialog(explanationDialog);
+          if (sourceDialog.open) closeDialog(sourceDialog);
+          state.overlay = null;
+          state.workMode = "work";
+        }
+        if (state.panel !== "contact" && qrDialog.open) closeDialog(qrDialog);
+        Object.entries(panels).forEach(([name, panel]) => {
+          panel.hidden = name !== state.panel;
+        });
+        tabs.forEach((tab) => {
+          const selected = tab.dataset.panel === state.panel;
+          tab.setAttribute("aria-selected", String(selected));
+          tab.id = `${tab.dataset.panel}-tab`;
+        });
+        shell.dataset.panel = state.panel;
+        document.querySelector("#app-main").setAttribute("data-active-panel", state.panel);
+        document.querySelector("#footer-prev").closest(".utility-controls").hidden = state.panel !== "works";
+        if (state.panel === "works") renderWork();
+        byId("utility-status").textContent = state.panel === "works" ? `正在看 ${works[state.activeWork].title}` : state.panel === "pricing" ? "定价图暂时留空" : "联系方式";
+      }
+
+      function selectWork(index, direction) {
+        if (state.panel !== "works" || state.isAnimating) return;
+        const nextIndex = Math.max(0, Math.min(works.length - 1, index));
+        if (nextIndex === state.activeWork) return;
+        const move = direction || (nextIndex > state.activeWork ? "next" : "prev");
+        state.isAnimating = true;
+        if (state.reducedMotion) {
+          state.activeWork = nextIndex;
+          renderWork();
+          state.isAnimating = false;
+          return;
+        }
+
+        stageViewport.classList.remove("is-entering", "is-exiting", "direction-next", "direction-prev");
+        stageViewport.classList.add("is-exiting", move === "next" ? "direction-next" : "direction-prev");
+        window.setTimeout(() => {
+          state.activeWork = nextIndex;
+          renderWork();
+          stageViewport.classList.remove("is-exiting");
+          stageViewport.classList.add("is-entering", move === "next" ? "direction-next" : "direction-prev");
+          window.setTimeout(() => stageViewport.classList.remove("is-entering"), 450);
+          state.isAnimating = false;
+        }, 220);
+      }
+
+      function setPanel(panel, updateHash = true) {
+        if (!["works", "pricing", "contact"].includes(panel)) panel = "works";
+        state.panel = panel;
+        renderPanel();
+        if (updateHash && window.location.hash !== `#${panel}`) window.history.pushState({}, "", `#${panel}`);
+      }
+
+      function finishPointer(pointerId) {
+        if (!state.dragging) return;
+        state.dragging = false;
+        stageViewport.classList.remove("is-dragging");
+        stageViewport.style.removeProperty("--drag-x");
+        const horizontal = Math.abs(state.pointerDeltaX) > Math.abs(state.pointerDeltaY);
+        if (state.workMode !== "compare" && horizontal && Math.abs(state.pointerDeltaX) >= 48) {
+          selectWork(state.activeWork + (state.pointerDeltaX < 0 ? 1 : -1), state.pointerDeltaX < 0 ? "next" : "prev");
+        }
+        if (pointerId !== undefined && stageViewport.hasPointerCapture(pointerId)) stageViewport.releasePointerCapture(pointerId);
+      }
+
+      document.querySelectorAll(".state-tab").forEach((tab) => {
+        tab.addEventListener("click", () => setPanel(tab.dataset.panel));
+      });
+      document.querySelector(".brand-plaque").addEventListener("click", () => setPanel("works"));
+      prevWork.addEventListener("click", () => selectWork(state.activeWork - 1, "prev"));
+      nextWork.addEventListener("click", () => selectWork(state.activeWork + 1, "next"));
+      footerPrev.addEventListener("click", () => selectWork(state.activeWork - 1, "prev"));
+      footerNext.addEventListener("click", () => selectWork(state.activeWork + 1, "next"));
+      prevPreview.addEventListener("click", () => selectWork(state.activeWork - 1, "prev"));
+      nextPreview.addEventListener("click", () => selectWork(state.activeWork + 1, "next"));
+      compareToggle.addEventListener("click", () => {
+        if (state.workMode === "compare") {
+          exitCompare();
+          return;
+        }
+        state.workMode = "compare";
+        renderWork();
+        window.requestAnimationFrame(() => state.compareRange?.focus());
+      });
+      explanationToggle.addEventListener("click", () => {
+        openDialog(explanationDialog, explanationToggle, renderExplanation);
+      });
+      sourceToggle.addEventListener("click", () => {
+        openDialog(sourceDialog, sourceToggle, renderSource);
+      });
+      qrTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => openContactQr(trigger));
+      });
+      document.querySelectorAll("[data-close-dialog]").forEach((button) => {
+        button.addEventListener("click", () => {
+          closeDialog(byId(button.dataset.closeDialog));
+        });
+      });
+      [explanationDialog, sourceDialog, qrDialog].forEach((dialog) => {
+        dialog.addEventListener("cancel", (event) => {
+          event.preventDefault();
+          closeDialog(dialog);
+        });
+      });
+
+      stageViewport.addEventListener("pointerdown", (event) => {
+        if (state.panel !== "works" || state.workMode === "compare" || state.isAnimating || event.button > 0) return;
+        state.dragging = true;
+        state.pointerStartX = event.clientX;
+        state.pointerStartY = event.clientY;
+        state.pointerDeltaX = 0;
+        state.pointerDeltaY = 0;
+        stageViewport.classList.add("is-dragging");
+        stageViewport.setPointerCapture(event.pointerId);
+      });
+      stageViewport.addEventListener("pointermove", (event) => {
+        if (!state.dragging) return;
+        state.pointerDeltaX = event.clientX - state.pointerStartX;
+        state.pointerDeltaY = event.clientY - state.pointerStartY;
+        if (Math.abs(state.pointerDeltaX) > Math.abs(state.pointerDeltaY)) stageViewport.style.setProperty("--drag-x", `${state.pointerDeltaX}px`);
+      });
+      stageViewport.addEventListener("pointerup", (event) => finishPointer(event.pointerId));
+      stageViewport.addEventListener("pointercancel", (event) => finishPointer(event.pointerId));
+
+      document.addEventListener("keydown", (event) => {
+        const target = event.target;
+        if (event.key === "1") return setPanel("works");
+        if (event.key === "2") return setPanel("pricing");
+        if (event.key === "3") return setPanel("contact");
+        if (event.key === "Escape") {
+          if (qrDialog.open) return closeDialog(qrDialog);
+          if (sourceDialog.open) return closeDialog(sourceDialog);
+          if (explanationDialog.open) return closeDialog(explanationDialog);
+          if (state.workMode === "compare") return exitCompare();
+          if (state.panel !== "works") return setPanel("works");
+          return;
+        }
+        if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target.isContentEditable) return;
+        if (state.panel !== "works") return;
+        if (state.workMode === "compare") return;
+        if (event.key === "ArrowLeft") { event.preventDefault(); selectWork(state.activeWork - 1, "prev"); }
+        if (event.key === "ArrowRight") { event.preventDefault(); selectWork(state.activeWork + 1, "next"); }
+        if (event.key === "Home") { event.preventDefault(); selectWork(0, "prev"); }
+        if (event.key === "End") { event.preventDefault(); selectWork(works.length - 1, "next"); }
+      });
+
+      document.querySelectorAll(".contact-copy").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const value = button.dataset.copy;
+          try {
+            await navigator.clipboard.writeText(value);
+            button.textContent = "已复制";
+          } catch {
+            button.textContent = value;
+          }
+          window.setTimeout(() => { button.textContent = "复制"; }, 1800);
+        });
+      });
+
+      document.querySelectorAll(".contact-qr-download").forEach((button) => {
+        button.addEventListener("click", () => {
+          const source = button.dataset.downloadSrc || "";
+          const label = button.dataset.downloadLabel || "联系方式";
+          const downloadKey = source.split("/").pop().replace(/\.[^.]+$/, "");
+          const dataUrl = window.contactQrDownloadData?.[downloadKey] || "";
+          if (!dataUrl) {
+            button.textContent = "暂不可用";
+            window.setTimeout(() => { button.textContent = "下载二维码"; }, 1800);
+            return;
+          }
+          const link = document.createElement("a");
+          link.href = dataUrl;
+          link.download = `${label}-二维码.jpg`;
+          link.style.display = "none";
+          document.body.append(link);
+          link.click();
+          link.remove();
+          button.textContent = "已下载";
+          window.setTimeout(() => { button.textContent = "下载二维码"; }, 1800);
+        });
+      });
+
+      qrSave.addEventListener("click", () => {
+        if (qrSave.disabled || !qrImage.complete || !qrImage.naturalWidth) {
+          qrStatus.textContent = "二维码还没有加载完成，请稍后再试。";
+          return;
+        }
+        try {
+          const canvas = document.createElement("canvas");
+          canvas.width = qrImage.naturalWidth;
+          canvas.height = qrImage.naturalHeight;
+          const context = canvas.getContext("2d");
+          if (!context) throw new Error("Canvas unavailable");
+          context.drawImage(qrImage, 0, 0);
+          const downloadKey = contactQr.src.split("/").pop().replace(/\.[^.]+$/, "");
+          const embeddedDataUrl = window.contactQrDownloadData?.[downloadKey] || "";
+          const dataUrl = embeddedDataUrl || canvas.toDataURL("image/jpeg", 0.95);
+          const link = document.createElement("a");
+          link.href = dataUrl;
+          link.download = `${contactQr.label || "联系方式"}-二维码.jpg`;
+          link.style.display = "none";
+          document.body.append(link);
+          link.click();
+          link.remove();
+          qrStatus.textContent = `${contactQr.label}二维码已开始下载。`;
+        } catch {
+          qrStatus.textContent = "保存失败，请右键或长按二维码图片保存。";
+        }
+      });
+
+      window.addEventListener("hashchange", () => setPanel(getPanelFromHash(), false));
+      const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      motionQuery.addEventListener?.("change", (event) => { state.reducedMotion = event.matches; });
+
+      renderContactQr();
+      renderWorkList();
+      setPanel(getPanelFromHash(), false);
+    })();
+  </script>
 </body>
 </html>
