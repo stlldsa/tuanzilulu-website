@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -63,8 +63,6 @@
       outline: 3px solid var(--orange);
       outline-offset: 4px;
     }
-
-    [hidden] { display: none !important; }
 
     .site-shell {
       position: relative;
@@ -1251,12 +1249,411 @@
       border: 0;
     }
 
+    .pricing-page {
+      height: 100%;
+      min-height: 0;
+      padding: clamp(18px, 4vh, 58px) clamp(4px, 3vw, 42px);
+    }
+
+    .pricing-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(190px, 0.22fr);
+      gap: clamp(22px, 4vw, 68px);
+      align-items: stretch;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .pricing-board {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.36fr) minmax(0, 1fr);
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid rgba(247, 239, 228, 0.7);
+      border-radius: 30px 30px 30px 8px;
+      box-shadow: var(--shadow), 16px 16px 0 rgba(242, 138, 29, 0.16);
+    }
+
+    .pricing-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      padding: clamp(28px, 4vw, 62px) clamp(22px, 3.4vw, 52px);
+      border-right: 1px solid var(--line-dark);
+    }
+
+    .pricing-copy h1 {
+      margin: 18px 0 12px;
+      color: var(--ink);
+      font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+      font-size: clamp(34px, 4vw, 66px);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      line-height: 1.08;
+    }
+
+    .pricing-copy-note {
+      margin: 0 0 clamp(24px, 4vh, 46px);
+      color: var(--muted-dark);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .pricing-menu {
+      display: grid;
+      gap: 5px;
+      margin-top: auto;
+    }
+
+    .pricing-menu-button {
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr) 24px;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      min-height: 68px;
+      padding: 10px 14px;
+      color: var(--muted-dark);
+      text-align: left;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px 19px 8px 19px;
+      transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .pricing-menu-button:hover {
+      color: var(--ink);
+      transform: translateX(3px);
+    }
+
+    .pricing-menu-button[aria-selected="true"] {
+      color: var(--ink);
+      background: color-mix(in srgb, var(--pricing-accent, var(--orange)) 8%, var(--surface));
+      border-color: color-mix(in srgb, var(--pricing-accent, var(--orange)) 38%, transparent);
+      box-shadow: 7px 7px 0 color-mix(in srgb, var(--pricing-accent, var(--orange)) 13%, transparent);
+    }
+
+    .pricing-menu-number {
+      color: var(--pricing-accent, var(--orange));
+      font-family: Georgia, serif;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .pricing-menu-title {
+      min-width: 0;
+      overflow: hidden;
+      font-size: 14px;
+      font-weight: 600;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pricing-menu-arrow {
+      color: var(--pricing-accent, var(--orange));
+      font-size: 20px;
+      text-align: right;
+    }
+
+    .pricing-showcase {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 14px;
+      min-width: 0;
+      min-height: 0;
+      padding: clamp(18px, 2.5vw, 34px);
+      background:
+        radial-gradient(circle at 84% 14%, color-mix(in srgb, var(--pricing-accent, var(--orange)) 10%, transparent), transparent 34%),
+        linear-gradient(145deg, rgba(234, 220, 204, 0.38), rgba(247, 239, 228, 0.24));
+    }
+
+    .pricing-main {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-width: 0;
+      min-height: 0;
+      padding: 14px;
+      overflow: hidden;
+      color: var(--ink);
+      background: rgba(247, 239, 228, 0.74);
+      border: 1px solid var(--line-dark);
+      border-radius: 20px 20px 20px 7px;
+    }
+
+    .pricing-main::before {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      width: 40px;
+      height: 4px;
+      background: var(--pricing-accent, var(--orange));
+      border-radius: 999px;
+      content: "";
+    }
+
+    .pricing-main-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: 61vh;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 22px rgba(47, 29, 16, 0.13));
+      transition: transform 240ms ease, filter 240ms ease;
+    }
+
+    .pricing-main:hover .pricing-main-image {
+      transform: scale(1.012);
+      filter: drop-shadow(0 18px 28px rgba(47, 29, 16, 0.18));
+    }
+
+    .pricing-open-label {
+      position: absolute;
+      right: 18px;
+      bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 38px;
+      padding: 0 13px;
+      color: var(--ink);
+      background: rgba(247, 239, 228, 0.92);
+      border: 1px solid var(--line-dark);
+      border-radius: 5px 13px 5px 13px;
+      font-size: 11px;
+      box-shadow: 0 8px 20px rgba(47, 29, 16, 0.1);
+    }
+
+    .pricing-thumbnails {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .pricing-thumb {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-width: 0;
+      height: clamp(70px, 10vh, 110px);
+      padding: 6px;
+      overflow: hidden;
+      background: rgba(247, 239, 228, 0.74);
+      border: 1px solid var(--line-dark);
+      border-radius: 7px 16px 7px 16px;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .pricing-thumb:hover { transform: translateY(-3px); }
+
+    .pricing-thumb[aria-selected="true"] {
+      border-color: var(--pricing-accent, var(--orange));
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--pricing-accent, var(--orange)) 24%, transparent);
+    }
+
+    .pricing-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .pricing-thumb-check {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: none;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      color: var(--surface);
+      background: var(--pricing-accent, var(--orange));
+      border-radius: 50%;
+      font-size: 12px;
+    }
+
+    .pricing-thumb[aria-selected="true"] .pricing-thumb-check { display: grid; }
+
+    .pricing-aside {
+      display: grid;
+      align-content: start;
+      gap: 22px;
+      min-height: 260px;
+      padding: 28px 0 28px 30px;
+      border-left: 1px solid var(--line);
+    }
+
+    .pricing-aside-number {
+      color: var(--orange);
+      font-family: Georgia, serif;
+      font-size: clamp(56px, 6vw, 86px);
+      line-height: 0.8;
+    }
+
+    .pricing-aside h2 {
+      margin: 0;
+      color: var(--cream);
+      font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+      font-size: clamp(21px, 2vw, 30px);
+      font-weight: 500;
+    }
+
+    .pricing-aside p {
+      max-width: 190px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .pricing-aside-current {
+      display: grid;
+      gap: 6px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .pricing-aside-current span {
+      color: var(--orange);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .pricing-aside-current strong {
+      color: var(--cream);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .pricing-aside-desc {
+      display: grid;
+      gap: 16px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .pricing-desc-item {
+      display: grid;
+      gap: 6px;
+    }
+
+    .pricing-desc-title {
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .pricing-desc-content {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .pricing-dialog {
+      width: min(920px, calc(100vw - 32px));
+      max-width: none;
+      max-height: calc(100svh - 28px);
+      padding: 0;
+      color: var(--ink);
+      background: transparent;
+      border: 0;
+    }
+
+    .pricing-dialog::backdrop { background: rgba(16, 10, 6, 0.86); }
+
+    .pricing-dialog-surface {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      max-height: calc(100svh - 28px);
+      min-height: min(760px, calc(100svh - 28px));
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid rgba(247, 239, 228, 0.72);
+      border-radius: 22px 22px 22px 6px;
+      box-shadow: var(--shadow), 12px 12px 0 rgba(242, 138, 29, 0.18);
+    }
+
+    .pricing-dialog-header,
+    .pricing-dialog-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .pricing-dialog-footer {
+      border-top: 1px solid var(--line-dark);
+      border-bottom: 0;
+    }
+
+    .pricing-dialog-title {
+      margin: 0;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .pricing-dialog-close,
+    .pricing-dialog-action,
+    .pricing-dialog-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--line-dark);
+      border-radius: 5px 12px 5px 12px;
+    }
+
+    .pricing-dialog-close,
+    .pricing-dialog-arrow { min-width: 42px; font-size: 20px; }
+
+    .pricing-dialog-action { padding: 0 14px; font-size: 11px; }
+    .pricing-dialog-close:hover,
+    .pricing-dialog-action:hover,
+    .pricing-dialog-arrow:hover { color: var(--surface); background: var(--ink); }
+
+    .pricing-dialog-media {
+      display: grid;
+      place-items: center;
+      min-height: 0;
+      padding: 18px;
+      overflow: auto;
+      background: var(--surface-deep);
+    }
+
+    .pricing-dialog-media img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(100svh - 170px);
+      object-fit: contain;
+      box-shadow: 0 18px 40px rgba(47, 29, 16, 0.18);
+    }
+
+    .pricing-dialog-nav {
+      display: flex;
+      gap: 8px;
+    }
+
     @media (max-width: 1080px) {
       .header-note { display: none; }
       .works-layout { grid-template-columns: minmax(150px, 0.22fr) minmax(0, 1fr) minmax(200px, 0.3fr); gap: 18px; }
       .info-panel { padding-left: 14px; }
       .stage-preview { display: none; }
       .stage-rail { grid-template-columns: minmax(0, 1fr); }
+      .pricing-layout { grid-template-columns: minmax(0, 1fr) 170px; gap: 22px; }
+      .pricing-board { grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr); }
+      .pricing-copy { padding: 30px 24px; }
+      .pricing-menu-button { min-height: 58px; }
     }
 
     @media (max-width: 720px) {
@@ -1353,6 +1750,35 @@
       .source-layout { grid-template-columns: 105px minmax(0, 1fr); min-height: calc(100svh - 200px); }
       .source-tabs { padding: 6px; }
       .source-tab { padding: 0 7px; font-size: 10px; }
+
+      .pricing-page { height: auto; min-height: calc(100svh - 160px); padding: 14px 0; }
+      .pricing-layout { display: flex; flex-direction: column; height: auto; }
+      .pricing-board { display: flex; flex-direction: column; min-height: 0; border-radius: 22px 22px 22px 6px; }
+      .pricing-copy { padding: 30px 20px 16px; border-right: 0; border-bottom: 1px solid var(--line-dark); }
+      .pricing-copy h1 { margin: 13px 0 8px; font-size: 38px; }
+      .pricing-copy-note { margin-bottom: 16px; font-size: 12px; }
+      .pricing-menu { display: flex; gap: 7px; margin-top: 0; overflow-x: auto; padding: 3px 2px 7px; scrollbar-width: none; }
+      .pricing-menu::-webkit-scrollbar { display: none; }
+      .pricing-menu-button { flex: 0 0 150px; grid-template-columns: 32px minmax(0, 1fr); min-height: 52px; padding: 7px 9px; }
+      .pricing-menu-number { font-size: 20px; }
+      .pricing-menu-title { font-size: 11px; }
+      .pricing-menu-arrow { display: none; }
+      .pricing-showcase { min-height: 560px; padding: 12px; }
+      .pricing-main { min-height: 430px; }
+      .pricing-main-image { max-height: 66svh; }
+      .pricing-open-label { right: 12px; bottom: 12px; }
+      .pricing-thumbnails { gap: 6px; }
+      .pricing-thumb { height: 72px; }
+      .pricing-aside { min-height: 0; padding: 16px 0 0; border-top: 1px solid var(--line); border-left: 0; }
+      .pricing-aside-number { font-size: 40px; }
+      .pricing-aside h2 { font-size: 19px; }
+      .pricing-aside p { max-width: none; }
+      .pricing-aside-current { display: none; }
+      .pricing-aside-desc { display: none; }
+      .pricing-dialog { width: calc(100vw - 18px); max-height: calc(100svh - 18px); }
+      .pricing-dialog-surface { min-height: calc(100svh - 18px); max-height: calc(100svh - 18px); border-radius: 16px 16px 16px 5px; }
+      .pricing-dialog-media { padding: 10px; }
+      .pricing-dialog-media img { max-height: calc(100svh - 150px); }
     }
 
     @media (max-width: 340px) {
@@ -1480,18 +1906,73 @@
         </div>
       </section>
 
-      <section class="panel state-page" id="pricing-panel" role="tabpanel" aria-labelledby="pricing-tab" hidden>
-        <div class="state-card">
-          <p class="eyebrow">Pricing</p>
-          <h1>定价图暂时留空</h1>
-          <p class="state-subtitle">有定价图后，再放进这里。</p>
-          <div class="empty-mark">待补充</div>
+      <section class="panel pricing-page" id="pricing-panel" role="tabpanel" aria-labelledby="pricing-tab" hidden>
+        <div class="pricing-layout">
+          <div class="pricing-board">
+            <div class="pricing-copy">
+              <p class="eyebrow">Pricing</p>
+              <h1>服务定价</h1>
+              <p class="pricing-copy-note">四大业务板块，选择分类查看对应定价图。</p>
+              <div class="pricing-menu" id="pricing-menu" role="tablist" aria-label="定价分类"></div>
+            </div>
+
+            <div class="pricing-showcase">
+              <button class="pricing-main" id="pricing-main-open" type="button" aria-haspopup="dialog" aria-label="放大查看当前定价图">
+                <img class="pricing-main-image" id="pricing-main-image" alt="">
+                <span class="pricing-open-label">查看大图 ↗</span>
+              </button>
+              <div class="pricing-thumbnails" id="pricing-thumbnails" role="tablist" aria-label="定价图缩略图"></div>
+            </div>
+          </div>
+
+          <aside class="pricing-aside" aria-label="定价说明">
+            <span class="pricing-aside-number">02</span>
+            <h2>服务定价</h2>
+            <p>选择左侧业务板块，即可查看对应价格。具体价格根据实际需求灵活报价。</p>
+            <div class="pricing-aside-current">
+              <span>Current</span>
+              <strong id="pricing-current-label">办公文档设计</strong>
+            </div>
+            <div class="pricing-aside-desc" id="pricing-desc-area">
+              <div class="pricing-desc-item" data-index="0">
+                <div class="pricing-desc-title">01 办公文档设计</div>
+                <div class="pricing-desc-content">PPT制作 · Word排版 · Excel处理<br>适合答辩、汇报、作业及日常办公<br>支持可编辑源文件交付</div>
+              </div>
+              <div class="pricing-desc-item" data-index="1">
+                <div class="pricing-desc-title">02 网页设计与开发</div>
+                <div class="pricing-desc-content">个人主页 · 作品展示 · 宣传网页<br>兼顾电脑端与手机端浏览体验<br>支持HTML源文件交付</div>
+              </div>
+              <div class="pricing-desc-item" data-index="2">
+                <div class="pricing-desc-title">03 网页工具开发</div>
+                <div class="pricing-desc-content">文件处理 · 计算转换 · 数据整理<br>根据实际需求定制，注重简单实用<br>支持本地运行与源文件交付</div>
+              </div>
+              <div class="pricing-desc-item" data-index="3">
+                <div class="pricing-desc-title">04 影视剪辑与后期</div>
+                <div class="pricing-desc-content">口播剪辑 · 混剪卡点 · 宣传短片 · AI视频<br>根据素材时长与成片要求灵活制作<br>默认交付MP4成片</div>
+              </div>
+            </div>
+          </aside>
         </div>
-        <aside class="state-aside" aria-label="定价说明">
-          <span class="state-aside-number">02</span>
-          <p>不放假套餐，也不放还没确定的数字。</p>
-        </aside>
       </section>
+
+      <dialog class="pricing-dialog" id="pricing-dialog" aria-labelledby="pricing-dialog-title">
+        <div class="pricing-dialog-surface">
+          <header class="pricing-dialog-header">
+            <h2 class="pricing-dialog-title" id="pricing-dialog-title">服务定价</h2>
+            <button class="pricing-dialog-close" id="pricing-dialog-close" type="button" aria-label="关闭定价大图">×</button>
+          </header>
+          <div class="pricing-dialog-media">
+            <img id="pricing-dialog-image" alt="">
+          </div>
+          <footer class="pricing-dialog-footer">
+            <div class="pricing-dialog-nav">
+              <button class="pricing-dialog-arrow" id="pricing-dialog-prev" type="button" aria-label="上一张">←</button>
+              <button class="pricing-dialog-arrow" id="pricing-dialog-next" type="button" aria-label="下一张">→</button>
+            </div>
+            <button class="pricing-dialog-action" id="pricing-dialog-download" type="button">保存图片</button>
+          </footer>
+        </div>
+      </dialog>
 
       <section class="panel state-page" id="contact-panel" role="tabpanel" aria-labelledby="contact-tab" hidden>
         <div class="state-card contact-card">
@@ -1539,8 +2020,18 @@
               </div>
             </div>
             <div class="contact-row">
+              <span class="contact-label">哔哩哔哩</span>
+              <span class="contact-value">3546566679857863</span>
+              <div class="contact-actions">
+                <button class="contact-action contact-copy" type="button" data-copy="3546566679857863">复制</button>
+                <button class="contact-qr-trigger" type="button" data-qr-src="./assets/contact/bilibili.jpg" data-qr-label="哔哩哔哩" aria-haspopup="dialog" aria-label="查看哔哩哔哩二维码">
+                  <span class="contact-qr-thumb" aria-hidden="true"><span>二维码<br><strong>待补充</strong></span></span>
+                </button>
+              </div>
+            </div>
+            <div class="contact-row">
               <span class="contact-label">GitHub</span>
-              <a class="contact-value" href="https://github.com/stlldsa" target="_blank" rel="noreferrer">github.com/stlldsa</a>
+              <a class="contact-value" href="https:
               <span aria-hidden="true">↗</span>
             </div>
           </div>
@@ -1616,11 +2107,184 @@
   </div>
 
   <script src="./assets/contact/download-data.js"></script>
+  <script src="./assets/pricing/pricing-download.js"></script>
   <script>
     (() => {
       "use strict";
 
-      // 后续只需填写 cover、compare、explanation 和 source；目前全部留空。
+
+      const pricingItems = [
+        {title:'办公文档设计', short:'办公文档', src:'./assets/pricing/办公文档设计定价图.png', accent:'#F28A1D'},
+        {title:'网页设计与开发', short:'网页设计', src:'./assets/pricing/网页设计与开发定价图.png', accent:'#2E86E9'},
+        {title:'网页工具开发', short:'网页工具', src:'./assets/pricing/网页工具开发定价图.png', accent:'#168447'},
+        {title:'影视剪辑与后期', short:'影视后期', src:'./assets/pricing/影视剪辑与后期定价图.png', accent:'#7654B8'}
+      ];
+
+      let activePricing = 0;
+      const pricingPanel = document.getElementById("pricing-panel");
+      const menu = document.getElementById("pricing-menu");
+      const thumbs = document.getElementById("pricing-thumbnails");
+      const mainButton = document.getElementById("pricing-main-open");
+      const mainImage = document.getElementById("pricing-main-image");
+      const currentLabel = document.getElementById("pricing-current-label");
+      const dialog = document.getElementById("pricing-dialog");
+      const dialogTitle = document.getElementById("pricing-dialog-title");
+      const dialogImage = document.getElementById("pricing-dialog-image");
+      const dialogClose = document.getElementById("pricing-dialog-close");
+      const dialogPrev = document.getElementById("pricing-dialog-prev");
+      const dialogNext = document.getElementById("pricing-dialog-next");
+      const dialogDownload = document.getElementById("pricing-dialog-download");
+      const descArea = document.getElementById("pricing-desc-area");
+      let returnFocus = null;
+
+      function padPricing(index) {
+        return String(index + 1).padStart(2, "0");
+      }
+
+      function renderPricing() {
+        const item = pricingItems[activePricing];
+        pricingPanel.style.setProperty("--pricing-accent", item.accent);
+        mainImage.src = item.src;
+        mainImage.alt = item.title + "定价图";
+        currentLabel.textContent = item.title;
+        mainButton.setAttribute("aria-label", `放大查看${item.title}定价图`);
+
+        menu.querySelectorAll(".pricing-menu-button").forEach((button, index) => {
+          const selected = index === activePricing;
+          button.setAttribute("aria-selected", String(selected));
+          button.tabIndex = selected ? 0 : -1;
+        });
+
+        thumbs.querySelectorAll(".pricing-thumb").forEach((button, index) => {
+          const selected = index === activePricing;
+          button.setAttribute("aria-selected", String(selected));
+          button.tabIndex = selected ? 0 : -1;
+        });
+
+        if (descArea) {
+          descArea.querySelectorAll(".pricing-desc-item").forEach((item, index) => {
+            item.style.display = index === activePricing ? "block" : "none";
+          });
+        }
+
+        if (dialog.open) renderPricingDialog();
+        const utility = document.getElementById("utility-status");
+        if (utility && !pricingPanel.hidden) utility.textContent = `正在查看 ${item.title}定价`;
+      }
+
+      function selectPricing(index, focusTarget = false) {
+        activePricing = (index + pricingItems.length) % pricingItems.length;
+        renderPricing();
+        if (focusTarget) {
+          const target = menu.querySelectorAll(".pricing-menu-button")[activePricing];
+          target?.focus();
+        }
+      }
+
+      function renderPricingDialog() {
+        const item = pricingItems[activePricing];
+        dialog.style.setProperty("--pricing-accent", item.accent);
+        dialogTitle.textContent = `${item.title} · 定价图`;
+        dialogImage.src = item.src;
+        dialogImage.alt = item.title + "定价图";
+      }
+
+      function openPricingDialog(trigger) {
+        returnFocus = trigger;
+        renderPricingDialog();
+        dialog.showModal();
+        dialogClose.focus();
+      }
+
+      function closePricingDialog() {
+        if (dialog.open) dialog.close();
+        const target = returnFocus;
+        returnFocus = null;
+        if (target && document.contains(target)) target.focus();
+      }
+
+      pricingItems.forEach((item, index) => {
+        const menuButton = document.createElement("button");
+        menuButton.className = "pricing-menu-button";
+        menuButton.type = "button";
+        menuButton.role = "tab";
+        menuButton.setAttribute("aria-selected", String(index === 0));
+        menuButton.tabIndex = index === 0 ? 0 : -1;
+        menuButton.innerHTML = `
+          <span class="pricing-menu-number">${padPricing(index)}</span>
+          <span class="pricing-menu-title">${item.title}</span>
+          <span class="pricing-menu-arrow" aria-hidden="true">›</span>
+        `;
+        menuButton.addEventListener("click", () => selectPricing(index));
+        menuButton.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+            event.preventDefault();
+            selectPricing(index + 1, true);
+          }
+          if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+            event.preventDefault();
+            selectPricing(index - 1, true);
+          }
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            selectPricing(index);
+          }
+        });
+        menu.append(menuButton);
+
+        const thumb = document.createElement("button");
+        thumb.className = "pricing-thumb";
+        thumb.type = "button";
+        thumb.role = "tab";
+        thumb.setAttribute("aria-selected", String(index === 0));
+        thumb.tabIndex = index === 0 ? 0 : -1;
+        thumb.setAttribute("aria-label", `查看${item.title}定价图`);
+        const image = document.createElement("img");
+        image.src = item.src;
+        image.alt = "";
+        image.loading = index === 0 ? "eager" : "lazy";
+        const check = document.createElement("span");
+        check.className = "pricing-thumb-check";
+        check.textContent = "✓";
+        check.setAttribute("aria-hidden", "true");
+        thumb.append(image, check);
+        thumb.addEventListener("click", () => selectPricing(index));
+        thumb.addEventListener("dblclick", () => openPricingDialog(thumb));
+        thumbs.append(thumb);
+      });
+
+      mainButton.addEventListener("click", () => openPricingDialog(mainButton));
+      dialogClose.addEventListener("click", closePricingDialog);
+      dialogPrev.addEventListener("click", () => selectPricing(activePricing - 1));
+      dialogNext.addEventListener("click", () => selectPricing(activePricing + 1));
+      dialogDownload.addEventListener("click", () => {
+        const item = pricingItems[activePricing];
+        const downloadKey = item.src.split("/").pop().replace(/\.[^.]+$/, "");
+        const dataUrl = window.pricingDownloadData?.[downloadKey] || "";
+        if (!dataUrl) {
+          dialogDownload.textContent = "暂不可用";
+          window.setTimeout(() => { dialogDownload.textContent = "保存图片"; }, 1800);
+          return;
+        }
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = `${item.title}_定价图.png`;
+        link.style.display = "none";
+        document.body.append(link);
+        link.click();
+        link.remove();
+        dialogDownload.textContent = "已下载";
+        window.setTimeout(() => { dialogDownload.textContent = "保存图片"; }, 1800);
+      });
+
+      dialog.addEventListener("cancel", (event) => {
+        event.preventDefault();
+        closePricingDialog();
+      });
+
+      renderPricing();
+
+
       const works = [
         {
           id: "work-01", title: "待补充作品 01", category: "作品", summary: "",
@@ -1652,7 +2316,7 @@
         }
       ];
 
-      // 提供二维码后只需填写 src；现在保持为空，不生成破损图片。
+
       const contactQr = { src: "", alt: "团子噜噜工作室工作微信二维码" };
 
       const state = {
